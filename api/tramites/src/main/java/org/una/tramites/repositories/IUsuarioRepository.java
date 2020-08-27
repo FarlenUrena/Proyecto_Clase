@@ -25,8 +25,8 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query("SELECT u FROM Usuario u WHERE UPPER(u.nombreCompleto) like CONCAT('%',UPPER(:nombreCompleto),'%')")
     public List<Usuario> findByNombreCompletoContainingIgnoreCase(@Param("nombreCompleto")String nombreCompleto);
     
-        @Query("select u from Usuario u where UPPER(u.nombreCompleto) like CONCAT('%',UPPER(:nombreCompleto),'%')") 
-        public Usuario findNombreCompletoWithLikeSQL(/*@Param("nombreCompleto")*/String nombreCompleto);
+    @Query("select u from Usuario u where UPPER(u.nombreCompleto) like CONCAT('%',UPPER(:nombreCompleto),'%')") 
+    public Usuario findNombreCompletoWithLikeSQL(/*@Param("nombreCompleto")*/String nombreCompleto);
 
        
  

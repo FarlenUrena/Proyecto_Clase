@@ -6,11 +6,12 @@
 package org.una.tramites.dto;
 
 import java.util.Date;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.una.tramites.entities.Departamento;
+import org.una.tramites.entities.Usuario;
 
 /**
  *
@@ -20,17 +21,14 @@ import org.una.tramites.entities.Departamento;
 @AllArgsConstructor
 @NoArgsConstructor 
 @ToString
-public class UsuarioDTO {
- 
-    private Long id; 
-    private String nombreCompleto;   
-    private String cedula; 
-    private boolean estado; 
+public class DepartamentoDTO {
+    private Long id;
+    private String nombre;
     private Date fechaRegistro; 
     private Date fechaModificacion; 
-    private Long DepartamentoId; 
-    private boolean esJefe;
-    private Long departamentos_id;
+    private boolean estado; 
+    List<Usuario> usuarios;
+     
+     
      
 }
-

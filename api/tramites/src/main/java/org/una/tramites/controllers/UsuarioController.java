@@ -35,7 +35,6 @@ import org.una.tramites.utils.MapperUtils;
 @RequestMapping("/usuarios") 
 @Api(tags = {"Usuarios"})
 public class UsuarioController {
-
     @Autowired
     private IUsuarioService usuarioService;
 
@@ -96,7 +95,7 @@ public class UsuarioController {
     }
 
     
-    @ApiOperation(value = "Obtiene una lista de usuarios según la relación del número ingresado con el número de cédula del usuario", response = UsuarioDTO.class, responseContainer = "List", tags = "Usuarios")
+    @ApiOperation(value = "Obtiene una lista de usuarios que contengan en su cédula el valor ingresado", response = UsuarioDTO.class, responseContainer = "List", tags = "Usuarios")
     @GetMapping("/cedula/{term}")
     public ResponseEntity<?> findByCedulaAproximate(@PathVariable(value = "term") String term) {
         try {
@@ -160,7 +159,7 @@ public class UsuarioController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @ApiOperation(value = "Elimina un usuario si el id ingresado coincide con el de un usuario registrado", response = UsuarioDTO.class,  tags = "Usuarios") 
+    @ApiOperation(value = "Elimina un usuario si su id coincide con el ingresado", response = UsuarioDTO.class,  tags = "Usuarios") 
     @DeleteMapping("/{id}") 
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
         try {
@@ -195,4 +194,38 @@ public class UsuarioController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     } 
+    
+     @ApiOperation(value = "Obtiene una lista de los usuarios asociados con el departamento ingresado", response = UsuarioDTO.class, responseContainer = "List", tags = "Usuarios")
+    @GetMapping("{departamento_id}")
+    public ResponseEntity<?> findByDepartamentoId(@PathVariable(value = "departamento_id") Long id) {
+        try {
+            Optional<List<Usuario>> result = usuarioService.findByDepartamentoId(id);
+            if (result.isPresent()) {
+                List<UsuarioDTO> usuariosDTO = MapperUtils.DtoListFromEntityList(result.get(), UsuarioDTO.class);
+                return new ResponseEntity<>(usuariosDTO, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+//    
+    @ApiOperation(value = "Obtiene el usario jefe de un departamento", response = UsuarioDTO.class, responseContainer = "UsuarioDto", tags = "Usuarios")
+    @GetMapping("jefe/{departamento_id}")
+    public ResponseEntity<?> findJefeByDepartamento(@PathVariable(value = "departamento_id") Long departamentoId) {
+       try {
+
+            Optional<Usuario> usuarioFound = usuarioService.findJefeByDepartamento(departamentoId);
+            if (usuarioFound.isPresent()) {
+                UsuarioDTO usuarioDto = MapperUtils.DtoFromEntity(usuarioFound.get(), UsuarioDTO.class);
+                return new ResponseEntity<>(usuarioDto, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+//    return 0;
 }

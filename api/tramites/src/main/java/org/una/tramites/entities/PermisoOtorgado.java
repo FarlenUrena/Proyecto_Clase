@@ -60,11 +60,11 @@ public class PermisoOtorgado implements Serializable {
     private Permiso permiso;
     
     
-    @Column(name = "usuario_id")
-    private Long usuarioId;
-
-    @Column( name = "permiso_id")
-    private Long permisoId;
+//    @Column(name = "usuario_id")
+//    private Long usuarioId;
+//
+//    @Column( name = "permiso_id")
+//    private Long permisoId;
 
     @Column
     private boolean estado;

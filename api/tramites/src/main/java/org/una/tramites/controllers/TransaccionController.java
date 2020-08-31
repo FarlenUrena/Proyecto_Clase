@@ -77,6 +77,39 @@ public class TransaccionController {
         }
     }
     
+//     @GetMapping("/usuario/{fecha}")
+//    @ApiOperation(value = "Obtiene una lista de transacciones según el usuario en el rango de fechas ingresado", response = TransaccionDTO.class, responseContainer = "TransaccionDto", tags = "Transacciones")
+//    public ResponseEntity<?> findByUsuarioIdAndFechaRegistroBetween(@PathVariable(value = "usuario_id") Long usuarioId,@PathVariable(value = "fecha_registro") Date startDate,@PathVariable(value = "fecha_registro") Date endDate) {
+//        try {
+//
+//            Optional<List<Transaccion>> result = transaccionService.findByUsuarioIdAndFechaRegistroBetween(usuarioId,startDate, endDate);
+//            if (result.isPresent()) {
+//                List<TransaccionDTO> TransacionDTO = MapperUtils.DtoListFromEntityList(result.get(), TransaccionDTO.class);
+//                return new ResponseEntity<>(TransacionDTO, HttpStatus.OK);
+//            } else {
+//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//            }
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+    
+//        @GetMapping("/permiso/{fecha}")
+//    @ApiOperation(value = "Obtiene una lista de transacciones según el permiso y el rango de fechas ingresado", response = TransaccionDTO.class, responseContainer = "TransaccionDto", tags = "Transacciones")
+//    public ResponseEntity<?> findByPermisoIdAndFechaRegistroBetween(@PathVariable(value = "permiso_id") Long permisoId,@PathVariable(value = "fecha_registro") Date startDate,@PathVariable(value = "fecha_registro") Date endDate) {
+//        try {
+//
+//            Optional<List<Transaccion>> result = transaccionService.findByUsuarioIdAndFechaRegistroBetween(permisoId,startDate, endDate);
+//            if (result.isPresent()) {
+//                List<TransaccionDTO> TransacionDTO = MapperUtils.DtoListFromEntityList(result.get(), TransaccionDTO.class);
+//                return new ResponseEntity<>(TransacionDTO, HttpStatus.OK);
+//            } else {
+//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//            }
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
     
     @ApiOperation(value = "Otorga un nuevo permiso con la información suministrada", response = TransaccionDTO.class, tags = "Transacciones") 
     @ResponseStatus(HttpStatus.OK)

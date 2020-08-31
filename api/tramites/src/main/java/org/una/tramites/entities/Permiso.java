@@ -15,8 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -25,49 +23,42 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
  * @author farle_000
  */
 @Entity
-@Table(name = "usuarios")
+@Table(name = "permisos")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Usuario implements Serializable {
-    
-    @ManyToOne 
-    @JoinColumn(name="departamentos_id")
-    private Departamento departamento;
-    
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario") 
-    private List<PermisoOtorgado> permisosOtorgados= new ArrayList<>();
-    
+public class Permiso implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+     @OneToMany(cascade = CascadeType.ALL, mappedBy = "permiso") 
+    private List<PermisoOtorgado> permisosOtorgados= new ArrayList<>();
 
-    @Column(name = "nombre_completo", length = 100)
-    private String nombreCompleto;
+    
+    
+    
+    @Column(name = "codigo", length = 10)
+    private String codigo;
 
-    @Column(length = 100, name = "password_encriptado")
-    private String passwordEncriptado;
-
-    @Column(length = 25, unique = true)
-    private String cedula;
+    @Column(length = 100, name = "descripcion")
+    private String descripcion;
 
     @Column
     private boolean estado;
-
-    @Column(name = "departamento_id")
-    private Long departamentoId; 
     
     @Column(name = "fecha_registro", updatable = false)
     @Temporal(TemporalType.DATE)
@@ -79,15 +70,11 @@ public class Usuario implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaModificacion;
 
-    @Column(name = "es_jefe")
-    private boolean esJefe;
-
-    private static final long serialVersionUID = 1L;
 
     @PrePersist
     public void prePersist() {
         estado=true;
-        esJefe=false;
+        
         fechaRegistro = new Date();
         fechaModificacion = new Date();
     }
@@ -97,5 +84,6 @@ public class Usuario implements Serializable {
         fechaModificacion = new Date();
     }
 
-}
 
+    
+}

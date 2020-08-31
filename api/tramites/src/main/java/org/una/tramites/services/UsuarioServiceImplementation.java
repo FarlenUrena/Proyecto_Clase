@@ -91,6 +91,7 @@ public class UsuarioServiceImplementation implements IUsuarioService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Usuario> findJefeByDepartamento(Long id) {
     
         return usuarioRepository.findJefeByDepartamento(id);

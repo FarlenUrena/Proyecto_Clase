@@ -212,7 +212,7 @@ public class UsuarioController {
     }
 //    
     @ApiOperation(value = "Obtiene el usario jefe de un departamento", response = UsuarioDTO.class, responseContainer = "UsuarioDto", tags = "Usuarios")
-    @GetMapping("jefe/{departamento_id}")
+    @GetMapping("departamento/jefe/{id}")
     public ResponseEntity<?> findJefeByDepartamento(@PathVariable(value = "departamento_id") Long departamentoId) {
        try {
 

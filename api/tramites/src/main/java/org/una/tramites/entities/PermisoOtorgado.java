@@ -19,83 +19,67 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
  * @author farle_000
  */
 @Entity
-@Table(name = "usuarios")
+@Table(name = "permisos_otorgados")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Usuario implements Serializable {
-    
-    @ManyToOne 
-    @JoinColumn(name="departamentos_id")
-    private Departamento departamento;
-    
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario") 
-    private List<PermisoOtorgado> permisosOtorgados= new ArrayList<>();
-    
+public class PermisoOtorgado implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre_completo", length = 100)
-    private String nombreCompleto;
+    @ManyToOne 
+    @JoinColumn(name="usuarios_id")
+    private Usuario usuario;
+    
 
-    @Column(length = 100, name = "password_encriptado")
-    private String passwordEncriptado;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "permisoOtorgado") 
+    private List<Transaccion> transacciones= new ArrayList<>();
 
-    @Column(length = 25, unique = true)
-    private String cedula;
+    
+    @ManyToOne 
+    @JoinColumn(name="permisos_id")
+    private Permiso permiso;
+    
+    
+    @Column(name = "usuario_id")
+    private Long usuarioId;
+
+    @Column( name = "permiso_id")
+    private Long permisoId;
 
     @Column
     private boolean estado;
-
-    @Column(name = "departamento_id")
-    private Long departamentoId; 
     
     @Column(name = "fecha_registro", updatable = false)
     @Temporal(TemporalType.DATE)
     @Setter(AccessLevel.NONE)
     private Date fechaRegistro;
 
-    @Column(name = "fecha_modificacion")
-    @Setter(AccessLevel.NONE)
-    @Temporal(TemporalType.DATE)
-    private Date fechaModificacion;
-
-    @Column(name = "es_jefe")
-    private boolean esJefe;
-
-    private static final long serialVersionUID = 1L;
 
     @PrePersist
     public void prePersist() {
         estado=true;
-        esJefe=false;
         fechaRegistro = new Date();
-        fechaModificacion = new Date();
     }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = new Date();
-    }
-
+    
+    
 }
-

@@ -16,14 +16,10 @@ import org.una.tramites.entities.Transaccion;
  *
  * @author farle_000
  */
+
 public interface ITransaccionRepository extends JpaRepository<Transaccion, Long>{
-
 //public Optional<List<Transaccion>> findByUsuarioIdAndFechaRegistroBetween(@Param("usuarios_id")Long usuariosId,@Param("fecha_registro")Date startDate,@Param("fecha_registro")Date endDate);
-
-//public Optional<List<Transaccion>> findByPermisoIdAndFechaRegistroBetween(@Param("permisos_id")Long permisosId,@Param("fecha_registro")Date startDate,@Param("fecha_registro")Date endDate);
-        
+//public Optional<List<Transaccion>> findByPermisoIdAndFechaRegistroBetween(@Param("permisos_id")Long permisosId,@Param("fecha_registro")Date startDate,@Param("fecha_registro")Date endDate);        
 public Optional<List<Transaccion>> findByObjetoAndFechaRegistroBetween(@Param("objeto")String objeto,@Param("fecha_registro") Date startDate,@Param("fecha_registro") Date endDate);
-
 public Optional<List<Transaccion>> findByFechaRegistroBetween(@Param("fecha_registro")Date startDate,@Param("fecha_registro")Date endDate);        
-    
 }

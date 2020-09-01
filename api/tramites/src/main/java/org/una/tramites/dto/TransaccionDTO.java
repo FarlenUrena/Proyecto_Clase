@@ -15,17 +15,16 @@ import lombok.ToString;
  *
  * @author farle_000
  */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor 
 @ToString
+
 public class TransaccionDTO {
      private Long id; 
      private Date fechaRegistro;
      private Long permisos_otorgados_id;
      private String objeto;
-     
-//     private Text informacion;
-     
-     
+//     private Text informacion;     
 }

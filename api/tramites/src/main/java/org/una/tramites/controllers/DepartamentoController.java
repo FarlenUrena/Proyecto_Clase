@@ -26,6 +26,7 @@ import org.una.tramites.utils.MapperUtils;
  *
  * @author farle_000
  */
+
 @RestController
 @RequestMapping("/departamentos") 
 @Api(tags = {"Departamentos"})

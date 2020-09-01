@@ -97,7 +97,4 @@ public class PermisoOtorgadoServiceImplementation implements IPermisoOtorgadoSer
     public Optional<List<PermisoOtorgado>> findAll() {
         return Optional.ofNullable(permisoOtorgadoRepository.findAll());
     }
-    
-    
-    
 }

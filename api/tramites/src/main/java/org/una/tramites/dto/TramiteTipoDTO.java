@@ -11,21 +11,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.una.tramites.entities.Transaccion;
 
 /**
  *
- * @author farle_000
+ * @author thony
  */
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor 
 @ToString
-public class PermisoOtorgadoDTO {
+
+public class TramiteTipoDTO {
     private Long id; 
-    private Long usuarios_id; 
-    private Long permisos_id; 
+    private Long descripcion;
+    private boolean estado; 
+    private Long departamentos_id; 
     private Date fechaRegistro; 
-    private boolean estado;   
+    private Date fechaModificacion;  
 }

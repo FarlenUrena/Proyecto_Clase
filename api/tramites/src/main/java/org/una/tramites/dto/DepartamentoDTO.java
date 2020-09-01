@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.dto;
 
 import java.util.Date;
@@ -17,10 +18,12 @@ import org.una.tramites.entities.Usuario;
  *
  * @author farle_000
  */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor 
 @ToString
+
 public class DepartamentoDTO {
     private Long id;
     private String nombre;
@@ -28,7 +31,4 @@ public class DepartamentoDTO {
     private Date fechaModificacion; 
     private boolean estado; 
     List<Usuario> usuarios;
-     
-     
-     
 }

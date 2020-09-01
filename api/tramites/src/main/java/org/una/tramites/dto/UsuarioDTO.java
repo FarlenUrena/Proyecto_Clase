@@ -16,6 +16,7 @@ import org.una.tramites.entities.Departamento;
  *
  * @author farle_000
  */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor 
@@ -30,6 +31,5 @@ public class UsuarioDTO {
     private Date fechaModificacion; 
     private boolean esJefe;
     private Long departamentos_id;
-     
 }
 

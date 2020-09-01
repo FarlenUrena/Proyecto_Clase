@@ -60,5 +60,4 @@ public class TransaccionServiceImplementation implements ITransaccionService {
     public Transaccion create(Transaccion transaccion) {
     return transaccionRepository.save(transaccion);
     }
-    
 }

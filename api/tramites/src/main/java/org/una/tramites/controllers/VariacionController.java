@@ -15,15 +15,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.una.tramites.dto.TransaccionDTO;
 import org.una.tramites.dto.VariacionDTO;
-import org.una.tramites.entities.Transaccion;
 import org.una.tramites.entities.Variacion;
 import org.una.tramites.services.IVariacionService;
 import org.una.tramites.utils.MapperUtils;
@@ -34,20 +28,20 @@ import org.una.tramites.utils.MapperUtils;
  */
 
 @RestController
-@RequestMapping("/variacion") 
+@RequestMapping("/variaciones") 
 @Api(tags = {"Variaciones"})
 
 public class VariacionController {
+    
     @Autowired
     private IVariacionService variacionService;
-    
+  
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene una variación con el id ingresado", response = VariacionDTO.class, responseContainer = "VariacionDto", tags = "Variaciones")
-    
-    public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<?> findById(@PathVariable(value = "id") Long Id) {
         try {
 
-            Optional<Variacion> variacionFound = variacionService.findById(id);
+            Optional<Variacion> variacionFound = variacionService.findById(Id);
             if (variacionFound.isPresent()) {
                 VariacionDTO variacionDto = MapperUtils.DtoFromEntity(variacionFound.get(), VariacionDTO.class);
                 return new ResponseEntity<>(variacionDto, HttpStatus.OK);
@@ -59,6 +53,7 @@ public class VariacionController {
         }
     }
     
+    /*
     @GetMapping("/{fecha}")
     @ApiOperation(value = "Obtiene una lista de variaciones según el rango de fechas ingresado", response = VariacionDTO.class, responseContainer = "VariacionDto", tags = "Variaciones")
     public ResponseEntity<?> findByFechaRegistroBetween(@PathVariable(value = "fecha_registro") Date startDate,@PathVariable(value = "fecha_registro") Date endDate) {
@@ -75,18 +70,5 @@ public class VariacionController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
-    @ApiOperation(value = "Crea una nueva variación con la información suministrada", response = VariacionDTO.class, tags = "Variaciones") 
-    @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/") 
-    @ResponseBody
-    public ResponseEntity<?> create(@RequestBody Variacion variacion) {
-        try {
-            Variacion variacionCreated = variacionService.create(variacion);
-            VariacionDTO variacionDto = MapperUtils.DtoFromEntity(variacionCreated, VariacionDTO.class);
-            return new ResponseEntity<>(variacionDto, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+    */
 }

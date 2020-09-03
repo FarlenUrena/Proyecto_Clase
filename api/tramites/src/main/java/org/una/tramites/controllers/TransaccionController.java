@@ -78,40 +78,6 @@ public class TransaccionController {
         }
     }
     
-//     @GetMapping("/usuario/{fecha}")
-//    @ApiOperation(value = "Obtiene una lista de transacciones según el usuario en el rango de fechas ingresado", response = TransaccionDTO.class, responseContainer = "TransaccionDto", tags = "Transacciones")
-//    public ResponseEntity<?> findByUsuarioIdAndFechaRegistroBetween(@PathVariable(value = "usuario_id") Long usuarioId,@PathVariable(value = "fecha_registro") Date startDate,@PathVariable(value = "fecha_registro") Date endDate) {
-//        try {
-//
-//            Optional<List<Transaccion>> result = transaccionService.findByUsuarioIdAndFechaRegistroBetween(usuarioId,startDate, endDate);
-//            if (result.isPresent()) {
-//                List<TransaccionDTO> TransacionDTO = MapperUtils.DtoListFromEntityList(result.get(), TransaccionDTO.class);
-//                return new ResponseEntity<>(TransacionDTO, HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            }
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-    
-//        @GetMapping("/permiso/{fecha}")
-//    @ApiOperation(value = "Obtiene una lista de transacciones según el permiso y el rango de fechas ingresado", response = TransaccionDTO.class, responseContainer = "TransaccionDto", tags = "Transacciones")
-//    public ResponseEntity<?> findByPermisoIdAndFechaRegistroBetween(@PathVariable(value = "permiso_id") Long permisoId,@PathVariable(value = "fecha_registro") Date startDate,@PathVariable(value = "fecha_registro") Date endDate) {
-//        try {
-//
-//            Optional<List<Transaccion>> result = transaccionService.findByUsuarioIdAndFechaRegistroBetween(permisoId,startDate, endDate);
-//            if (result.isPresent()) {
-//                List<TransaccionDTO> TransacionDTO = MapperUtils.DtoListFromEntityList(result.get(), TransaccionDTO.class);
-//                return new ResponseEntity<>(TransacionDTO, HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            }
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-    
     @ApiOperation(value = "Otorga un nuevo permiso con la información suministrada", response = TransaccionDTO.class, tags = "Transacciones") 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/") 
@@ -125,60 +91,5 @@ public class TransaccionController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
-    
-                 
-//     @ApiOperation(value = "Actualiza un permiso otorgado con la información suministrada si su id coincide con el ingresado", response = TransaccionDTO.class,  tags = "Transacciones") 
-//    @PutMapping("/{id}") 
-//    @ResponseBody
-//    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @RequestBody Transaccion transaccionModified) {
-//        try {
-//            Optional<Transaccion> permisoOtorgadoUpdated = transaccionService.update(transaccionModified, id);
-//            if (permisoOtorgadoUpdated.isPresent()) {
-//                TransaccionDTO transaccionDto = MapperUtils.DtoFromEntity(permisoOtorgadoUpdated.get(), TransaccionDTO.class);
-//                return new ResponseEntity<>(transaccionDto, HttpStatus.OK);
-//
-//            } else {
-//                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//
-//            }
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-        
-//        @ApiOperation(value = "Elimina un permiso otorgado si su id coincide con el ingresado", response = TransaccionDTO.class,  tags = "Transacciones") 
-//    @DeleteMapping("/{id}") 
-//    public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
-//        try {
-//            Optional<Transaccion> transaccionFound = transaccionService.findById(id);
-//            if (transaccionFound.isPresent()) {
-//                transaccionService.delete(id);
-//                return new ResponseEntity<>(null, HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            }
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-        
-//    @ApiOperation(value = "Elimina todos los permisos otorgados", response = TransaccionDTO.class, tags = "Transacciones") 
-//    @DeleteMapping("/") 
-//    public ResponseEntity<?> deleteAll() {
-// 	//TODO: Implementar este método
-//        try {
-//            Optional<List<Transaccion>> result = transaccionService.findAll();
-//            if (result.isPresent()) {
-//                transaccionService.deleteAll();
-//                return new ResponseEntity<>(null, HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            }
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    } 
-        
-    }
+}
    

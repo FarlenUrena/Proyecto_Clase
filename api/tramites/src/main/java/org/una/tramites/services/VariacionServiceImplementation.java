@@ -11,9 +11,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.una.tramites.entities.Transaccion;
+import org.una.tramites.entities.Variacion;
 import org.una.tramites.repositories.IVariacionRepository;
-
 
 
 /**
@@ -24,29 +23,20 @@ import org.una.tramites.repositories.IVariacionRepository;
 @Service
 public class VariacionServiceImplementation implements IVariacionService {
     @Autowired
-    private IVariacionRepository variacionRepository; 
+    private IVariacionRepository variacionRepository;
+    
     
     @Override
     @Transactional(readOnly = true)
-    public Optional<Variacion> findById(Long id) {
-        return variacionRepository.findById(id);
+    public Optional<Variacion> findById(Long Id) {
+        return variacionRepository.findById(Id);
     }
     
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<List<Variacion>> findByObjetoAndFechaRegistroBetween(String objeto, Date startDate, Date endDate) {
-    return variacionRepository.findByObjetoAndFechaRegistroBetween(objeto,startDate,endDate);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<List<Variacion>> findByFechaRegistroBetween(Date startDate, Date endDate) {
-    return variacionRepository.findByFechaRegistroBetween(startDate,endDate);
-    }
-
+    /*
     @Override
     @Transactional
     public Variacion create(Variacion variacion) {
     return variacionRepository.save(variacion);
     }
+    */
 }

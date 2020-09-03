@@ -26,60 +26,22 @@ public class TramiteTipoServiceImplementation implements ITramiteTipoService {
     
     @Override
     @Transactional(readOnly = true)
-    public Optional<TramiteTipo> findById(Long usuarioId) {
-        return tramiteTipoRepository.findById(usuarioId);
+    public Optional<TramiteTipo> findById(Long Id) {
+    return tramiteTipoRepository.findById(Id);
     }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<List<TramiteTipo>> findByUsuarioId(Long usuarioId) {
-    return tramiteTipoRepository.findByUsuarioId(usuarioId);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<List<TramiteTipo>> findByTramiteTipoId(Long tramiteTipoId) {
-      return tramiteTipoRepository.findByTramiteTipoId(tramiteTipoId);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<List<TramiteTipo>> findByFechaRegistroBetween(Date startDate, Date endDate) {
-    return tramiteTipoRepository.findByFechaRegistroBetween(startDate,endDate);
     
-    }
-
+    /*
     @Override
     @Transactional
     public TramiteTipo create(TramiteTipo tramiteTipo) {
         return tramiteTipoRepository.save(tramiteTipo);
     }
-
+    */
+    
+    /*
     @Override
-    @Transactional
-    public Optional<TramiteTipo> update(TramiteTipo tramiteTipo, Long id) {
-    if (tramiteTipoRepository.findById(id).isPresent()) {
-            return Optional.ofNullable(tramiteTipoRepository.save(tramiteTipo));
-        } else {
-            return null;
-        }
-    }
-
-    @Override
-    @Transactional
     public void delete(Long id) {
-    tramiteTipoRepository.deleteById(id);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    @Transactional
-    public void deleteAll() {
-    tramiteTipoRepository.deleteAll();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<List<TramiteTipo>> findAll() {
-        return Optional.ofNullable(tramiteTipoRepository.findAll());
-    }
+    */
 }

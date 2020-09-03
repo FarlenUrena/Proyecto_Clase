@@ -30,19 +30,7 @@ public class TransaccionServiceImplementation implements ITransaccionService {
     public Optional<Transaccion> findById(Long id) {
         return transaccionRepository.findById(id);
     }
-
-//    @Override
-//    @Transactional(readOnly = true)
-//    public Optional<List<Transaccion>> findByUsuarioIdAndFechaRegistroBetween(Long usuarioId, Date startDate, Date endDate) {
-//    return transaccionRepository.findByUsuarioIdAndFechaRegistroBetween(usuarioId,startDate,endDate);
-//    }
-
-//    @Override
-//    @Transactional(readOnly = true)
-//    public Optional<List<Transaccion>> findByPermisoIdAndFechaRegistroBetween(Long permisosId, Date startDate, Date endDate) {
-//    return transaccionRepository.findByPermisoIdAndFechaRegistroBetween(permisosId,startDate,endDate);
-//    }
-
+    
     @Override
     @Transactional(readOnly = true)
     public Optional<List<Transaccion>> findByObjetoAndFechaRegistroBetween(String objeto, Date startDate, Date endDate) {

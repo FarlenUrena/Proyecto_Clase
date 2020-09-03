@@ -49,9 +49,6 @@ public class Transaccion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "transaccion") 
-//    private List<PermisoOtorgado> permisosOtorgados= new ArrayList<>();
-    
     @ManyToOne 
     @JoinColumn(name="transaccion")
     private PermisoOtorgado permisoOtorgado;

@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.una.tramites.controllers.RequisitoController;
+import org.una.tramites.entities.Requisito;
 
 /**
  *
@@ -16,22 +17,9 @@ import org.una.tramites.controllers.RequisitoController;
  */
 
 public interface IRequisitoService {
-    public Optional<RequisitoController> findById(Long id);
-    //    public Optional<List<Transaccion>> findByUsuarioIdAndFechaRegistroBetween(Long usuarioId, Date startDate, Date endDate);
-    //    public Optional<List<Transaccion>> findByPermisoIdAndFechaRegistroBetween(Long permisoId, Date startDate, Date endDate);
-    public Optional<List<RequisitoController>> findByObjetoAndFechaRegistroBetween(String objeto, Date startDate, Date endDate);
-    public Optional<List<RequisitoController>> findByFechaRegistroBetween(Date startDate, Date endDate);
-    public RequisitoController create(RequisitoController requisito);
-
-    public Optional<List<RequisitoController>> findByUsuarioId(Long usuarioId);
-
-    public Optional<List<RequisitoController>> findByRequisitoId(Long requisitoId);
-
-    public Optional<RequisitoController> update(RequisitoController requisitoModified, Long id);
-
-    public void delete(Long id);
-
-    public Optional<List<RequisitoController>> findAll();
-
-    public void deleteAll();
+    // public Optional<Requisito> findById(Long id);
+    // public Requisito create(Requisito requisito);
+    public Optional<Requisito> findByRequisitoId(Long requisitoId);
+    // public void delete(Long id);
+    // public void deleteAll();
 }

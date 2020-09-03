@@ -16,17 +16,7 @@ import org.una.tramites.entities.TramiteTipo;
  */
 
 public interface ITramiteTipoService {
-    public Optional <List<TramiteTipo>> findAll();
-    public Optional <TramiteTipo> findById(Long usuarioId);
-    public Optional <List<TramiteTipo>> findByUsuarioId(Long usuarioId);
-    public Optional <List<TramiteTipo>> findByTramiteId(Long permisoId);
-    public Optional <List<TramiteTipo>> findByFechaRegistroBetween(Date startDate, Date endDate);
-    public TramiteTipo create(TramiteTipo tramiteTipo);
-    public Optional<TramiteTipo> update(TramiteTipo tramiteTipo, Long id);
-    public void delete(Long id);
-    public void deleteAll();
-    /*
-    public Optional<TramiteTipo> findById(Long id);
-    public Optional<List<TramiteTipo>> findByTramiteIdAndEstado(Long usuarioId, boolean estado);
-    */
+    public Optional<TramiteTipo> findById(Long Id);
+    // public TramiteTipo create(TramiteTipo tramiteTipo);
+    // public void delete(Long id);
 }

@@ -159,6 +159,5 @@ public class PermisoController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     } 
-        
-    }
+}
    

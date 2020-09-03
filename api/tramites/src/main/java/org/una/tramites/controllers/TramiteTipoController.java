@@ -43,11 +43,11 @@ public class TramiteTipoController {
     private ITramiteTipoService tramiteTipoService;
   
     @GetMapping("/{id}")
-    @ApiOperation(value = "Obtiene un trámite a partir del id ingresado", response = TramiteTipoDTO.class, responseContainer = "TramiteTipoDto", tags = "TramitesTipos")
-    public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
+    @ApiOperation(value = "Obtiene un trámite con el id ingresado", response = TramiteTipoDTO.class, responseContainer = "TramiteTipoDto", tags = "TramiteTipo")
+    public ResponseEntity<?> findId(@PathVariable(value = "tramiteTipo_id") Long Id) {
         try {
 
-            Optional<TramiteTipo> tramiteTipoFound = tramiteTipoService.findById(id);
+            Optional<TramiteTipo> tramiteTipoFound = tramiteTipoService.findById(Id);
             if (tramiteTipoFound.isPresent()) {
                 TramiteTipoDTO tramiteTipoDto = MapperUtils.DtoFromEntity(tramiteTipoFound.get(), TramiteTipoDTO.class);
                 return new ResponseEntity<>(tramiteTipoDto, HttpStatus.OK);
@@ -59,58 +59,8 @@ public class TramiteTipoController {
         }
     }
     
-    @GetMapping("/{fecha}")
-    @ApiOperation(value = "Obtiene una lista de trámites según el rango de fechas ingresado", response = TramiteTipoDTO.class, responseContainer = "TramiteTipoDto", tags = "TramitesTipos")
-    public ResponseEntity<?> findByFechaRegistroBetween(@PathVariable(value = "fecha_registro") Date startDate,@PathVariable(value = "fecha_registro") Date endDate) {
-        try {
-
-            Optional<List<TramiteTipo>> result = tramiteTipoService.findByFechaRegistroBetween(startDate, endDate);
-            if (result.isPresent()) {
-                List<TramiteTipoDTO> tramiteTipoDTO = MapperUtils.DtoListFromEntityList(result.get(), TramiteTipoDTO.class);
-                return new ResponseEntity<>(tramiteTipoDTO, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    
-      @GetMapping("/{usuario}")
-    @ApiOperation(value = "Obtiene la lista de trámites otorgados del usuario ingresado", response = TramiteTipoDTO.class, responseContainer = "TramiteTipoDto", tags = "TramitesTipos")
-    public ResponseEntity<?> findByUsuarioId(@PathVariable(value = "usuario_id")Long usuarioId) {
-        try {
-
-            Optional<List<TramiteTipo>> result = tramiteTipoService.findByUsuarioId(usuarioId);
-            if (result.isPresent()) {
-                List<TramiteTipoDTO> tramiteTipoDTO = MapperUtils.DtoListFromEntityList(result.get(), TramiteTipoDTO.class);
-                return new ResponseEntity<>(tramiteTipoDTO, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    
-     @GetMapping("/{tramite}")
-    @ApiOperation(value = "Obtiene la lista de trámites otorgados segun el tramite ingresado", response = TramiteTipoDTO.class, responseContainer = "TramiteTipoDto", tags = "TramitesOtorgados")
-    public ResponseEntity<?> findByTramiteId(@PathVariable(value = "tramite_id")Long tramiteId) {
-        try {
-
-            Optional<List<TramiteTipo>> result = tramiteTipoService.findByTramiteId(tramiteId);
-            if (result.isPresent()) {
-                List<TramiteTipoDTO> tramiteTipoDTO = MapperUtils.DtoListFromEntityList(result.get(), TramiteTipoDTO.class);
-                return new ResponseEntity<>(tramiteTipoDTO, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    
-    @ApiOperation(value = "Crea un nuevo trámite con la información suministrada", response = TramiteTipoDTO.class, tags = "TramitesTipos") 
+    /*
+    @ApiOperation(value = "Crea un nuevo trámite con la información suministrada", response = TramiteTipoDTO.class, tags = "TramiteTipo") 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/") 
     @ResponseBody
@@ -123,29 +73,10 @@ public class TramiteTipoController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    */
     
-    
-                 
-     @ApiOperation(value = "Actualiza un trámite con la información suministrada si su id coincide con el ingresado", response = TramiteTipoDTO.class,  tags = "TramitesTipos") 
-    @PutMapping("/{id}") 
-    @ResponseBody
-    public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @RequestBody TramiteTipo tramiteTipoModified) {
-        try {
-            Optional<TramiteTipo> tramiteTipoUpdated = tramiteTipoService.update(tramiteTipoModified, id);
-            if (tramiteTipoUpdated.isPresent()) {
-                TramiteTipoDTO tramiteTipoDto = MapperUtils.DtoFromEntity(tramiteTipoUpdated.get(), TramiteTipoDTO.class);
-                return new ResponseEntity<>(tramiteTipoDto, HttpStatus.OK);
-
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-        
-        @ApiOperation(value = "Elimina un trámite si su id coincide con el ingresado", response = TramiteTipoDTO.class,  tags = "TramitesTipos") 
+    /*
+    @ApiOperation(value = "Elimina un trámite si su id coincide con el ingresado", response = TramiteTipoDTO.class,  tags = "TramiteTipo") 
     @DeleteMapping("/{id}") 
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
         try {
@@ -160,20 +91,5 @@ public class TramiteTipoController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-        
-    @ApiOperation(value = "Elimina todos los trámites", response = TramiteTipoDTO.class, tags = "TramitesTipos") 
-    @DeleteMapping("/") 
-    public ResponseEntity<?> deleteAll() {
-        try {
-            Optional<List<TramiteTipo>> result = tramiteTipoService.findAll();
-            if (result.isPresent()) {
-                tramiteTipoService.deleteAll();
-                return new ResponseEntity<>(null, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    } 
+    */
 }

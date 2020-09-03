@@ -9,7 +9,7 @@ package org.una.tramites.services;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import org.una.tramites.entities.Transaccion;
+import org.springframework.data.repository.query.Param;
 import org.una.tramites.entities.Variacion;
 
 /**
@@ -18,8 +18,6 @@ import org.una.tramites.entities.Variacion;
  */
 
 public interface IVariacionService {
-    public Optional<Variacion> findById(Long id);
-    public Optional<List<Variacion>> findByObjetoAndFechaRegistroBetween(String objeto, Date startDate, Date endDate);
-    public Optional<List<Variacion>> findByFechaRegistroBetween(Date startDate, Date endDate);
-    public Variacion create(Variacion variacion);
+    // public Variacion create(Variacion variacion);
+    public Optional<Variacion> findById(@Param("id")Long Id);
 }

@@ -30,8 +30,6 @@ import lombok.ToString;
 import lombok.Data;
 import lombok.Setter;
 
-
-
 /**
  *
  * @author thony
@@ -58,20 +56,13 @@ public class Variacion implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "tramite_tipo_id")
-    private Long tramite_tipoId; 
+    @Column(name = "variacion_id")
+    private Long variacion_Id; 
 
     @Column(name = "fecha_registro", updatable = false)
     @Temporal(TemporalType.DATE)
     @Setter(AccessLevel.NONE)
     private Date fechaRegistro;
-
-    @ManyToOne 
-    @JoinColumn(name="tramites_tipos_id")
-    private TramiteTipo tramite_tipo;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "variacion") 
-    private List<Requisito> requisitos= new ArrayList<>();
 
     private static final long serialVersionUID = 1L;
 

@@ -63,7 +63,8 @@ public class TramiteTipo implements Serializable {
     @Setter(AccessLevel.NONE)
     @Temporal(TemporalType.DATE)
     private Date fechaModificacion;
-
+    
+    /*
     @ManyToOne 
     @JoinColumn(name="departamentos_id")
     private Departamento departamento;
@@ -71,7 +72,8 @@ public class TramiteTipo implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tramite_tipo") 
     private List<Variacion> variaciones= new ArrayList<>();
     private static final long serialVersionUID = 1L;
-
+    */
+    
     @PrePersist
     public void prePersist() {
         estado=true;

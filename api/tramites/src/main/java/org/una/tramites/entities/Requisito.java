@@ -6,10 +6,7 @@
 package org.una.tramites.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -55,17 +51,13 @@ public class Requisito implements Serializable {
     @Column
     private boolean estado;
 
-    @Column(name = "variacion_id")
-    private Long variacionId; 
+    @Column(name = "requisito_id")
+    private Long requisitoId; 
 
     @Column(name = "fecha_registro", updatable = false)
     @Temporal(TemporalType.DATE)
     @Setter(AccessLevel.NONE)
     private Date fechaRegistro;
-
-    @ManyToOne 
-    @JoinColumn(name="variaciones_id")
-    private Variacion variacion;
 
     private static final long serialVersionUID = 1L;
 

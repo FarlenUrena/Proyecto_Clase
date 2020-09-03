@@ -47,7 +47,14 @@ public class TramiteTipo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+            
+    @ManyToOne 
+    @JoinColumn(name="departamentos_id")
+    private Departamento departamento;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tramiteTipo") 
+    private List<Variacion> variaciones= new ArrayList<>();
+    
     @Column(name = "descripcion", length = 100)
     private String descripcion;
 

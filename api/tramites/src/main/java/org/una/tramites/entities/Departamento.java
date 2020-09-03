@@ -44,6 +44,9 @@ public class Departamento implements Serializable{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "departamento") 
     private List<Usuario> usuarios= new ArrayList<>();
     
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "departamento") 
+    private List<TramiteTipo> tramitesTipos= new ArrayList<>();
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

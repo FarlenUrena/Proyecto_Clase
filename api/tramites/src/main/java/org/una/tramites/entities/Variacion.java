@@ -46,6 +46,14 @@ public class Variacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @ManyToOne 
+    @JoinColumn(name="tramite_tipo_id")
+    private TramiteTipo tramiteTipo;
+    
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "variacion") 
+    private List<Requisito> requisitos= new ArrayList<>();
 
     @Column
     private boolean grupo;

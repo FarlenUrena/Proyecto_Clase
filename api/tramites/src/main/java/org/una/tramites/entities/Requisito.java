@@ -45,6 +45,10 @@ public class Requisito implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne 
+    @JoinColumn(name="variacion_id")
+    private Variacion variacion;
+    
     @Column(name = "descripcion")
     private String descripcion;
 

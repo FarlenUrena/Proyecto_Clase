@@ -43,7 +43,7 @@ public class TramiteTipoController {
     private ITramiteTipoService tramiteTipoService;
   
     @GetMapping("/{id}")
-    @ApiOperation(value = "Obtiene un trámite con el id ingresado", response = TramiteTipoDTO.class, responseContainer = "TramiteTipoDto", tags = "TramiteTipo")
+    @ApiOperation(value = "Obtiene un trámite con el id ingresado", response = TramiteTipoDTO.class, responseContainer = "TramiteTipoDto", tags = "TramitesTipos")
     public ResponseEntity<?> findId(@PathVariable(value = "tramiteTipo_id") Long Id) {
         try {
 

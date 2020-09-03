@@ -19,4 +19,5 @@ import org.una.tramites.entities.Permiso;
 public interface IPermisoRepository extends JpaRepository<Permiso, Long>{
     public Optional<List<Permiso>> findByEstado(@Param("estado")boolean estado);
     public Optional<List<Permiso>> findByFechaRegistroBetween(@Param("fecha_registro")Date start,@Param("fecha_registro")Date end);
+    public Optional<Permiso> findByCodigo(@Param("codigo")String codigo);
 }

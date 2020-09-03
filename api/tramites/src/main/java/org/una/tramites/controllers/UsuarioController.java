@@ -128,7 +128,7 @@ public class UsuarioController {
         }
     }
     
-    @ApiOperation(value = "Crea un nuevo usuario con la información suministrada", response = UsuarioDTO.class, tags = "Usuarios") 
+    @ApiOperation(value = "Permite crear un Usuario", response = UsuarioDTO.class, tags = "Usuarios") 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/") 
     @ResponseBody

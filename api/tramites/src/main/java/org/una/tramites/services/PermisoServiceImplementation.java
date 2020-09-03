@@ -75,5 +75,10 @@ public class PermisoServiceImplementation implements IPermisoService{
     public Optional<List<Permiso>> findAll() {
         return Optional.ofNullable(permisoRepository.findAll());
     }
+
+    @Override
+    public Optional<Permiso> findByCodigo(String codigo) {
+    return permisoRepository.findByCodigo(codigo);
+    }
     
 }

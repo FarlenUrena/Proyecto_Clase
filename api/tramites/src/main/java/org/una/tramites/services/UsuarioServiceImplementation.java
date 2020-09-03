@@ -97,6 +97,12 @@ public class UsuarioServiceImplementation implements IUsuarioService {
         return usuarioRepository.findJefeByDepartamento(id);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Usuario> findByCedula(String cedula) {
+    return usuarioRepository.findByCedula(cedula);
+    }
+
  
 }
 

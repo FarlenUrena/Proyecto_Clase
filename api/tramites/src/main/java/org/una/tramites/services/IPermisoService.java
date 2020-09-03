@@ -31,6 +31,8 @@ public interface IPermisoService {
     public void delete(Long id);
 
     public void deleteAll();
+
+    public Optional<Permiso> findByCodigo(String codigo);
     
 
 }

@@ -8,6 +8,10 @@ package org.una.tramites.services;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.una.tramites.entities.Usuario;
@@ -19,11 +23,21 @@ import org.una.tramites.repositories.IUsuarioRepository;
  */
 
 @Service
-public class UsuarioServiceImplementation implements IUsuarioService {
+public class UsuarioServiceImplementation implements UserDetailsService, IUsuarioService {
 
     @Autowired
     private IUsuarioRepository usuarioRepository;
+    
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    private void encriptarPassword(Usuario usuario) {
+        String password = usuario.getPasswordEncriptado();
+        if (!password.isBlank()) {
+            usuario.setPasswordEncriptado(bCryptPasswordEncoder.encode(password));
+        }
+    }
+    
     @Override
     @Transactional(readOnly = true)
     public Optional<List<Usuario>> findAll() {
@@ -103,6 +117,24 @@ public class UsuarioServiceImplementation implements IUsuarioService {
     return usuarioRepository.findByCedula(cedula);
     }
 
- 
+    @Override
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Usuario> usuarioBuscado = usuarioRepository.findByCedula(username);
+        if (usuarioBuscado.isPresent()) {
+            System.out.println(username + "org.una.tramite.services.UsuarioServiceImplementation");
+            
+            Usuario usuario = usuarioBuscado.get();
+            System.out.println(usuario);
+            // List<GrandtedAuthority> roles = new ArrayList<>();
+            // roles.add(newSImpleGrantedAuthority("ADMIN"));
+            // UserDetails userDetails = new User(usuario.getCedula(), usaurio.getPasswordEncriptado);
+            // System.out.println(userDetails);
+            // return userDetails;
+        } else {
+            System.out.println("org.una.tramties.services.UsuarioServiceImplementation.load");
+        }
+        return null;
+    }
 }
 

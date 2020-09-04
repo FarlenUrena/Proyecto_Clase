@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package components;
+package org.una.tramites.components;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import org.una.tramites.services.IUsuarioService;
 @Component
 public class DataLoader implements ApplicationRunner {
 
-    @Value("${app.ausdmin-er}")
+    @Value("${app.admin-user}")
     private String cedula;
 
     @Value("${app.password}")
@@ -74,9 +74,5 @@ public class DataLoader implements ApplicationRunner {
         } else {
             System.out.println("Se encontro el admin");
         }
-
     }
-
-    
 }
-

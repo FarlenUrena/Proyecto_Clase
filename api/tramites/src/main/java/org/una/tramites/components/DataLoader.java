@@ -72,7 +72,7 @@ public class DataLoader implements ApplicationRunner {
 
             System.out.println("Se agrega el usuario inicial");
         } else {
-            System.out.println("Se encontro el admin");
+            System.out.println("Se encontró el admin");
         }
     }
 }

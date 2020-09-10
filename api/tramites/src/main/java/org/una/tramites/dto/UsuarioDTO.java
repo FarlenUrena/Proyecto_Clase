@@ -24,12 +24,13 @@ import org.una.tramites.entities.Departamento;
 public class UsuarioDTO {
  
     private Long id; 
-    private String nombreCompleto;   
+    private String nombreCompleto;
+    private String contraseñaEncriptada;
     private String cedula; 
     private boolean estado; 
     private Date fechaRegistro; 
     private Date fechaModificacion; 
     private boolean esJefe;
-    private Long departamentos_id;
+    private Departamento departamentos_id;
 }
 

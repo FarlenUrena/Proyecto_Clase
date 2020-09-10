@@ -10,9 +10,11 @@ import io.swagger.annotations.ApiOperation;
 import org.una.tramites.services.IUsuarioService;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +25,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.una.tramites.dto.AuthenticationRequest;
+import org.una.tramites.dto.AuthenticationResponse;
+import org.una.tramites.dto.PermisoOtorgadoDTO;
 import org.una.tramites.dto.UsuarioDTO;
+import org.una.tramites.entities.PermisoOtorgado;
 import org.una.tramites.entities.Usuario;
 import org.una.tramites.utils.MapperUtils;
 
@@ -38,6 +44,8 @@ import org.una.tramites.utils.MapperUtils;
 public class UsuarioController {
     @Autowired
     private IUsuarioService usuarioService;
+    private UsuarioDTO usuario;
+    private List<PermisoOtorgadoDTO> permisosOtorgados;
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos los Usuarios", response = UsuarioDTO.class, responseContainer = "List", tags = "Usuarios")
@@ -73,27 +81,59 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping("/login")
+    @PostMapping("/login")
     @ResponseBody
     @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuarioDTO.class, tags = "Seguridad")
-    public ResponseEntity<?> login(@PathVariable(value = "cedula") String cedula, @PathVariable(value = "password") String password) {
-        try {
-            Usuario usuario = new Usuario();
-            usuario.setCedula(cedula);
-            usuario.setPasswordEncriptado(password);
-            Optional<Usuario> usuarioFound = usuarioService.login(usuario);
-            if (usuarioFound.isPresent()) {
-                UsuarioDTO usuarioDto = MapperUtils.DtoFromEntity(usuarioFound.get(), UsuarioDTO.class);
-                return new ResponseEntity<>(usuarioDto, HttpStatus.OK);
+    public ResponseEntity<?> login(@Valid @RequestBody AuthenticationRequest authenticationRequest, BindingResult bindingResult/*,@PathVariable(value = "cedula") String cedula, @PathVariable(value = "password") String password */) {
 
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity("La información no esta bien formada o no coincide con el formato esperado", HttpStatus.BAD_REQUEST);
+        }
+        try {
+            
+            AuthenticationResponse authenticationResponse = new AuthenticationResponse();
+            String token = usuarioService.login(authenticationRequest);
+            if (!token.isBlank()) {
+                authenticationResponse.setJwt(token);
+                   Optional<Usuario> usuarioFound = usuarioService.findByCedula(authenticationRequest.getCedula());
+                   UsuarioDTO usuarioDto = MapperUtils.DtoFromEntity(usuarioFound.get(), UsuarioDTO.class);
+                   authenticationResponse.setUsuario(usuarioDto);
+                   
+                  
+                   
+                   authenticationResponse.setPermisos(permisosOtorgados);
+                   
+                return new ResponseEntity(authenticationResponse, HttpStatus.OK);
             } else {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>("Credenciales invalidos", HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
+
+    
+//    @PutMapping("/login")
+//    @ResponseBody
+//    @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuarioDTO.class, tags = "Seguridad")
+//    public ResponseEntity<?> login(@PathVariable(value = "cedula") String cedula, @PathVariable(value = "password") String password) {
+//        try {
+//            Usuario usuario = new Usuario();
+//            usuario.setCedula(cedula);
+//            usuario.setPasswordEncriptado(password);
+//            Optional<Usuario> usuarioFound = usuarioService.login(usuario);
+//            if (usuarioFound.isPresent()) {
+//                UsuarioDTO usuarioDto = MapperUtils.DtoFromEntity(usuarioFound.get(), UsuarioDTO.class);
+//                return new ResponseEntity<>(usuarioDto, HttpStatus.OK);
+//
+//            } else {
+//                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//            }
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//
+//    }
 
     
     @ApiOperation(value = "Obtiene una lista de usuarios que contengan en su cédula el valor ingresado", response = UsuarioDTO.class, responseContainer = "List", tags = "Usuarios")

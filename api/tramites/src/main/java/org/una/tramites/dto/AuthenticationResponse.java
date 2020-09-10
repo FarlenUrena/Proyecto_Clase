@@ -5,27 +5,26 @@
  */
 package org.una.tramites.dto;
 
-import java.util.Date;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.una.tramites.entities.PermisoOtorgado;
+import org.una.tramites.dto.PermisoOtorgadoDTO;
 
 /**
  *
  * @author farle_000
  */
-
 @Data
 @AllArgsConstructor
-@NoArgsConstructor 
+@NoArgsConstructor
 @ToString
+public class AuthenticationResponse {
 
-public class TransaccionDTO {
-     private Long id; 
-     private Date fechaRegistro;
-     private PermisoOtorgado permisosOtorgados_id;
-     private String objeto;
-     private String descripcion;
+    private String jwt;
+    private UsuarioDTO usuario;
+    private List<PermisoOtorgadoDTO> permisos;
+
 }
+

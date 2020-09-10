@@ -11,7 +11,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.una.tramites.entities.Permiso;
 import org.una.tramites.entities.Transaccion;
+import org.una.tramites.entities.Usuario;
 
 /**
  *
@@ -24,8 +26,8 @@ import org.una.tramites.entities.Transaccion;
 @ToString
 public class PermisoOtorgadoDTO {
     private Long id; 
-    private Long usuarios_id; 
-    private Long permisos_id; 
+    private Usuario usuarios_id; 
+    private Permiso permisos_id; 
     private Date fechaRegistro; 
     private boolean estado;   
 }

@@ -47,8 +47,6 @@ public class Permiso implements Serializable {
     
      @OneToMany(cascade = CascadeType.ALL, mappedBy = "permiso") 
     private List<PermisoOtorgado> permisosOtorgados= new ArrayList<>();
-
-    
     
     
     @Column(name = "codigo", length = 10)
@@ -61,13 +59,13 @@ public class Permiso implements Serializable {
     private boolean estado;
     
     @Column(name = "fecha_registro", updatable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Setter(AccessLevel.NONE)
     private Date fechaRegistro;
 
     @Column(name = "fecha_modificacion")
     @Setter(AccessLevel.NONE)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
 
 

@@ -55,7 +55,7 @@ public class Transaccion implements Serializable {
     
     
     @Column(name = "fecha_registro", updatable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Setter(AccessLevel.NONE)
     private Date fechaRegistro;
 
@@ -66,8 +66,8 @@ public class Transaccion implements Serializable {
     @Column(name = "objeto", length = 50)
     private String objeto;
     
-//    @Column(name = "Informacion")
-//    private Clob informacion;
+    @Column(name = "Informacion")
+    private String informacion;
     
     
     @PrePersist

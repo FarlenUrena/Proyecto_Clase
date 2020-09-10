@@ -30,5 +30,4 @@ public class DepartamentoDTO {
     private Date fechaRegistro; 
     private Date fechaModificacion; 
     private boolean estado; 
-    List<Usuario> usuarios;
 }

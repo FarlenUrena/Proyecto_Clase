@@ -9,8 +9,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.una.tramites.entities.TramiteTipo;
-import org.una.tramites.repositories.ITramiteTipoRepository;
+import org.una.tramites.entities.RequisitoPresentado;
+import org.una.tramites.repositories.IRequisitoPresentadoRepository;
 
 /**
  *
@@ -18,13 +18,13 @@ import org.una.tramites.repositories.ITramiteTipoRepository;
  */
 
 @Service
-public class TramiteTipoServiceImplementation implements ITramiteTipoService {
+public class RequisitoPresentadoServiceImplementation implements IRequisitoPresentadoService {
     @Autowired
-    private ITramiteTipoRepository tramiteTipoRepository;
+    private IRequisitoPresentadoRepository requisitoPresentadoRepository;
     
     @Override
     @Transactional(readOnly = true)
-    public Optional<TramiteTipo> findById(Long Id) {
-    return tramiteTipoRepository.findById(Id);
+    public Optional<RequisitoPresentado> findById(Long Id) {
+    return requisitoPresentadoRepository.findById(Id);
     }
 }

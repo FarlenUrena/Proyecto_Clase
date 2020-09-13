@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -30,49 +32,47 @@ import lombok.ToString;
 
 /**
  *
- * @author farle_000
+ * @author thony
  */
+
 @Entity
-@Table(name = "permisos")
+@Table(name = "requisitos_presentados")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Permiso implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+public class RequisitoPresentado implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+            
+//    @ManyToOne 
+//    @JoinColumn(name="departamentos_id")
+//    private Departamento departamento;
+//    
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requisitoPresentado") 
+//    private List<Variacion> variaciones= new ArrayList<>();
     
-     @OneToMany(cascade = CascadeType.ALL, mappedBy = "permiso") 
-    private List<PermisoOtorgado> permisosOtorgados= new ArrayList<>();
-    
-    
-    @Column(name = "codigo", length = 10)
-    private String codigo;
-
-    @Column(length = 100, name = "descripcion")
+    @Column(name = "descripcion", length = 100)
     private String descripcion;
 
     @Column
     private boolean estado;
-    
+
     @Column(name = "fecha_registro", updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Setter(AccessLevel.NONE)
     private Date fechaRegistro;
 
     @Column(name = "fecha_modificacion")
     @Setter(AccessLevel.NONE)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date fechaModificacion;
-
-
+    
     @PrePersist
     public void prePersist() {
         estado=true;
-        
         fechaRegistro = new Date();
         fechaModificacion = new Date();
     }

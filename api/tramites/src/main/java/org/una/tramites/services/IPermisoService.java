@@ -15,25 +15,13 @@ import org.una.tramites.entities.Permiso;
  * @author farle_000
  */
 public interface IPermisoService {
- 
     public Optional<List<Permiso>> findAll();
-    
     public Optional<Permiso> findById(Long id);
-
     public Optional<List<Permiso>> findByEstado(boolean estado);
-
     public Optional<List<Permiso>> findByFechaRegistroBetween(Date startDate, Date endDate);
-
     public Permiso create(Permiso permiso);
-
     public Optional<Permiso> update(Permiso permiso, Long id);
-
     public void delete(Long id);
-
     public void deleteAll();
-
     public Optional<Permiso> findByCodigo(String codigo);
-    
-
 }
-

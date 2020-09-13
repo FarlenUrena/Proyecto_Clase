@@ -80,5 +80,4 @@ public class PermisoServiceImplementation implements IPermisoService{
     public Optional<Permiso> findByCodigo(String codigo) {
     return permisoRepository.findByCodigo(codigo);
     }
-    
 }

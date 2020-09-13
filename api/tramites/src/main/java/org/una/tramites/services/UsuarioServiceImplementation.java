@@ -158,7 +158,5 @@ public class UsuarioServiceImplementation implements UserDetailsService, IUsuari
         }
         return null;
     }
-
-  
 }
 

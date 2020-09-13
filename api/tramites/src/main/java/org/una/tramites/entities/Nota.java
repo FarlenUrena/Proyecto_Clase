@@ -30,23 +30,25 @@ import lombok.ToString;
 
 /**
  *
- * @author farle_000
+ * @author thony
  */
+
 @Entity
-@Table(name = "permisos")
+@Table(name = "notas")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Permiso implements Serializable {
+
+public class Nota implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-     @OneToMany(cascade = CascadeType.ALL, mappedBy = "permiso") 
-    private List<PermisoOtorgado> permisosOtorgados= new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "permiso") 
+//    private List<PermisoOtorgado> permisosOtorgados= new ArrayList<>();
     
     
     @Column(name = "codigo", length = 10)
@@ -63,10 +65,10 @@ public class Permiso implements Serializable {
     @Setter(AccessLevel.NONE)
     private Date fechaRegistro;
 
-    @Column(name = "fecha_modificacion")
-    @Setter(AccessLevel.NONE)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaModificacion;
+//    @Column(name = "fecha_modificacion")
+//    @Setter(AccessLevel.NONE)
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date fechaModificacion;
 
 
     @PrePersist
@@ -74,11 +76,11 @@ public class Permiso implements Serializable {
         estado=true;
         
         fechaRegistro = new Date();
-        fechaModificacion = new Date();
+//        fechaModificacion = new Date();
     }
 
     @PreUpdate
     public void preUpdate() {
-        fechaModificacion = new Date();
+//        fechaModificacion = new Date();
     }
 }

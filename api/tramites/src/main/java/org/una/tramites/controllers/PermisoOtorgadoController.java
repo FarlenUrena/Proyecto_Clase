@@ -24,10 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.una.tramites.dto.PermisoOtorgadoDTO;
-import org.una.tramites.dto.PermisoOtorgadoDTO;
-import org.una.tramites.entities.Permiso;
 import org.una.tramites.entities.PermisoOtorgado;
-import org.una.tramites.entities.Usuario;
 import org.una.tramites.services.IPermisoOtorgadoService;
 import org.una.tramites.utils.MapperUtils;
 

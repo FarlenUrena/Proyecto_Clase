@@ -10,11 +10,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.una.tramites.entities.PermisoOtorgado;
 
 /**
  *
- * @author farle_000
+ * @author thony
  */
 
 @Data
@@ -22,10 +21,11 @@ import org.una.tramites.entities.PermisoOtorgado;
 @NoArgsConstructor 
 @ToString
 
-public class TransaccionDTO {
-     private Long id; 
-     private Date fechaRegistro;
-     private PermisoOtorgado permisosOtorgados_id;
-     private String objeto;
-     private String descripcion;
+public class ParametroGeneralDTO {
+    private String nombre; 
+    private String valor;
+    private String descripcion;
+    private Date fechaRegistro; 
+    private Date fechaModificacion;
 }
+

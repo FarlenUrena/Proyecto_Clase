@@ -14,7 +14,7 @@ import org.una.tramites.entities.PermisoOtorgado;
 
 /**
  *
- * @author farle_000
+ * @author thony
  */
 
 @Data
@@ -22,7 +22,7 @@ import org.una.tramites.entities.PermisoOtorgado;
 @NoArgsConstructor 
 @ToString
 
-public class TransaccionDTO {
+public class NotaDTO {
      private Long id; 
      private Date fechaRegistro;
      private PermisoOtorgado permisosOtorgados_id;

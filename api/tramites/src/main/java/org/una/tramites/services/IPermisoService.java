@@ -14,6 +14,7 @@ import org.una.tramites.entities.Permiso;
  *
  * @author farle_000
  */
+
 public interface IPermisoService {
     public Optional<List<Permiso>> findAll();
     public Optional<Permiso> findById(Long id);
@@ -24,4 +25,5 @@ public interface IPermisoService {
     public void delete(Long id);
     public void deleteAll();
     public Optional<Permiso> findByCodigo(String codigo);
+    public long ContarPermisos();
 }

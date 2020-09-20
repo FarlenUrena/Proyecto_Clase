@@ -19,8 +19,8 @@ import org.una.tramites.repositories.IPermisoRepository;
  * @author farle_000
  */
 @Service
-public class PermisoServiceImplementation implements IPermisoService{
-
+public class PermisoServiceImplementation implements IPermisoService {
+    
     @Autowired
     private IPermisoRepository permisoRepository;
     
@@ -56,7 +56,8 @@ public class PermisoServiceImplementation implements IPermisoService{
             return Optional.ofNullable(permisoRepository.save(permiso));
         } else {
             return null;
-        }}
+        }
+    }
 
     @Override
     @Transactional
@@ -80,4 +81,11 @@ public class PermisoServiceImplementation implements IPermisoService{
     public Optional<Permiso> findByCodigo(String codigo) {
     return permisoRepository.findByCodigo(codigo);
     }
+
+    @Override
+    public long ContarPermisos() {
+        List<Permiso> permisos = permisoRepository.findAll();
+        
+        return permisos.size();
+    }   
 }

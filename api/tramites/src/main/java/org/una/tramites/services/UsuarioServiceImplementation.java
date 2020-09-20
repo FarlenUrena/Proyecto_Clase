@@ -23,9 +23,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.una.tramites.dto.AuthenticationRequest;
+import org.una.tramites.dto.AuthenticationResponse;
+import org.una.tramites.dto.PermisoOtorgadoDTO;
+import org.una.tramites.dto.UsuarioDTO;
 import org.una.tramites.entities.Usuario;
 import org.una.tramites.jwt.JwtProvider;
 import org.una.tramites.repositories.IUsuarioRepository;
+import org.una.tramites.utils.MapperUtils;
 
 /**
  *
@@ -109,13 +113,25 @@ public class UsuarioServiceImplementation implements UserDetailsService, IUsuari
     @Autowired
     private AuthenticationManager authenticationManager;
     @Override
-    public String login(AuthenticationRequest authenticationRequest) {
-        
-        
-        Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getCedula(), authenticationRequest.getPassword()));
+    public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
+               Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getCedula(), authenticationRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return jwtProvider.generateToken(authenticationRequest);
+        AuthenticationResponse authenticationResponse = new AuthenticationResponse();
+
+        Optional<Usuario> usuario = findByCedula(authenticationRequest.getCedula());
+
+        if (usuario.isPresent()) {
+            authenticationResponse.setJwt(jwtProvider.generateToken(authenticationRequest));
+            UsuarioDTO usuarioDto = MapperUtils.DtoFromEntity(usuario.get(), UsuarioDTO.class);
+            authenticationResponse.setUsuario(usuarioDto);
+            List<PermisoOtorgadoDTO> permisosOtorgadosDto = MapperUtils.DtoListFromEntityList(usuario.get().getPermisosOtorgados(), PermisoOtorgadoDTO.class);
+            authenticationResponse.setPermisos(permisosOtorgadosDto);
+
+            return authenticationResponse;
+        } else {
+            return null;
+        }
+
  
     }
 

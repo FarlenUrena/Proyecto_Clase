@@ -92,9 +92,9 @@ public class UsuarioController {
         try {
             
             AuthenticationResponse authenticationResponse = new AuthenticationResponse();
-            String token = usuarioService.login(authenticationRequest);
-            if (!token.isBlank()) {
-                authenticationResponse.setJwt(token);
+            authenticationResponse = usuarioService.login(authenticationRequest);
+            if (!authenticationResponse.toString().isBlank()) {
+                authenticationResponse.setJwt(authenticationResponse.toString());
                    Optional<Usuario> usuarioFound = usuarioService.findByCedula(authenticationRequest.getCedula());
                    UsuarioDTO usuarioDto = MapperUtils.DtoFromEntity(usuarioFound.get(), UsuarioDTO.class);
                    authenticationResponse.setUsuario(usuarioDto);

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.una.tramites.entities.Permiso;
 import org.una.tramites.entities.PermisoOtorgado;
 import org.una.tramites.entities.Usuario;
+import org.una.tramites.loaders.Permisos;
 import org.una.tramites.services.IPermisoOtorgadoService;
 import org.una.tramites.services.IPermisoService;
 import org.una.tramites.services.IUsuarioService;
@@ -43,6 +44,9 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
+        if(permisoService.ContarPermisos() == 0 || permisoService.ContarPermisos() == 1){
+        createPermisos();
+        }
         if (usuarioService.findByCedula(cedula).isEmpty()) {
 
             Permiso permiso;
@@ -75,4 +79,14 @@ public class DataLoader implements ApplicationRunner {
             System.out.println("Se encontró el admin");
         }
     }
+        private void createPermisos() {
+        for (Permisos permiso : Permisos.values()) {
+            Permiso nuevoPermiso = new Permiso();
+            nuevoPermiso.setCodigo(permiso.getCodigo());
+            nuevoPermiso.setDescripcion(permiso.name());
+            permisoService.create(nuevoPermiso);
+        } 
+    }
+
+    
 }

@@ -44,8 +44,6 @@ import org.una.tramites.utils.MapperUtils;
 public class UsuarioController {
     @Autowired
     private IUsuarioService usuarioService;
-    private UsuarioDTO usuario;
-    private List<PermisoOtorgadoDTO> permisosOtorgados;
 
     @GetMapping()
     @ApiOperation(value = "Obtiene una lista de todos los Usuarios", response = UsuarioDTO.class, responseContainer = "List", tags = "Usuarios")
@@ -81,36 +79,31 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping("/login")
-    @ResponseBody
-    @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuarioDTO.class, tags = "Seguridad")
-    public ResponseEntity<?> login(@Valid @RequestBody AuthenticationRequest authenticationRequest, BindingResult bindingResult/*,@PathVariable(value = "cedula") String cedula, @PathVariable(value = "password") String password */) {
-
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity("La información no esta bien formada o no coincide con el formato esperado", HttpStatus.BAD_REQUEST);
-        }
-        try {
-            
-            AuthenticationResponse authenticationResponse = new AuthenticationResponse();
-            authenticationResponse = usuarioService.login(authenticationRequest);
-            if (!authenticationResponse.toString().isBlank()) {
-                authenticationResponse.setJwt(authenticationResponse.toString());
-                   Optional<Usuario> usuarioFound = usuarioService.findByCedula(authenticationRequest.getCedula());
-                   UsuarioDTO usuarioDto = MapperUtils.DtoFromEntity(usuarioFound.get(), UsuarioDTO.class);
-                   authenticationResponse.setUsuario(usuarioDto);
-                   
-                  
-                   
-                   authenticationResponse.setPermisos(permisosOtorgados);
-                   
-                return new ResponseEntity(authenticationResponse, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("Credenciales invalidos", HttpStatus.UNAUTHORIZED);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @PostMapping("/login")
+//    @ResponseBody
+//    @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuarioDTO.class, tags = "Seguridad")
+//    public ResponseEntity<?> login(@Valid @RequestBody AuthenticationRequest authenticationRequest, BindingResult bindingResult/*,@PathVariable(value = "cedula") String cedula, @PathVariable(value = "password") String password */) {
+//
+//        if (bindingResult.hasErrors()) {
+//            return new ResponseEntity("La información no esta bien formada o no coincide con el formato esperado", HttpStatus.BAD_REQUEST);
+//        }
+//        try {
+//            
+//            if (!authenticationResponse.toString().isBlank()) {
+//               
+//                   
+//                  
+//                   
+//                   authenticationResponse.setPermisos(permisosOtorgados);
+//                   
+//                return new ResponseEntity(authenticationResponse, HttpStatus.OK);
+//            } else {
+//                return new ResponseEntity<>("Credenciales invalidos", HttpStatus.UNAUTHORIZED);
+//            }
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     
 //    @PutMapping("/login")
@@ -252,7 +245,7 @@ public class UsuarioController {
         }
     }
 //    
-    @ApiOperation(value = "Obtiene el usario jefe de un departamento", response = UsuarioDTO.class, responseContainer = "UsuarioDto", tags = "Usuarios")
+    @ApiOperation(value = "Obtiene el usuario jefe de un departamento", response = UsuarioDTO.class, responseContainer = "UsuarioDto", tags = "Usuarios")
     @GetMapping("departamento/jefe/{id}")
     public ResponseEntity<?> findJefeByDepartamento(@PathVariable(value = "departamento_id") Long departamentoId) {
        try {

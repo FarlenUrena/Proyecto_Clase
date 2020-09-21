@@ -34,8 +34,8 @@ public interface IUsuarioService {
     public void deleteAll();
 
 //    public Optional<Usuario> login(Usuario usuario); 
-    
-    public AuthenticationResponse login(AuthenticationRequest authenticationRequest);
+//    
+//    public AuthenticationResponse login(AuthenticationRequest authenticationRequest);
     ////----------
     public  Optional<List<Usuario>>  findByDepartamentoId(Long id);
     

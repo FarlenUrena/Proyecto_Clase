@@ -104,11 +104,9 @@ public class PermisoController {
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
-    
-    
+    }    
                  
-     @ApiOperation(value = "Actualiza un permiso si su id coincide con el igresado y lo actualiza con de la información suministrada", response = PermisoDTO.class,  tags = "Permisos") 
+    @ApiOperation(value = "Actualiza un permiso si su id coincide con el igresado y lo actualiza con de la información suministrada", response = PermisoDTO.class,  tags = "Permisos") 
     @PutMapping("/{id}") 
     @ResponseBody
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @RequestBody Permiso permisoModified) {
@@ -127,7 +125,7 @@ public class PermisoController {
         }
     }
         
-        @ApiOperation(value = "Elimina un permiso si su id coincide con el ingresado", response = PermisoDTO.class,  tags = "Permisos") 
+    @ApiOperation(value = "Elimina un permiso si su id coincide con el ingresado", response = PermisoDTO.class,  tags = "Permisos") 
     @DeleteMapping("/{id}") 
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
         try {

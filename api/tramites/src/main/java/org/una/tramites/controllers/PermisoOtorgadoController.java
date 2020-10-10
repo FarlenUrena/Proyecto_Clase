@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.controllers;
 
 import io.swagger.annotations.Api;
@@ -32,6 +33,7 @@ import org.una.tramites.utils.MapperUtils;
  *
  * @author farle_000
  */
+
 @RestController
 @RequestMapping("/permisos_otorgado") 
 @Api(tags = {"PermisosOtorgados"})
@@ -39,7 +41,6 @@ public class PermisoOtorgadoController {
     @Autowired
     private IPermisoOtorgadoService permisoOtorgadoService;
   
-    
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene un permiso otorgado apartir del id ingresado", response = PermisoOtorgadoDTO.class, responseContainer = "PermisoOtorgadoDto", tags = "PermisosOtorgados")
     public ResponseEntity<?> findById(@PathVariable(value = "id") Long id) {
@@ -74,7 +75,7 @@ public class PermisoOtorgadoController {
         }
     }
     
-      @GetMapping("/{usuario}")
+     @GetMapping("/{usuario}")
     @ApiOperation(value = "Obtiene la lista de permisos otorgados del usuario ingresado", response = PermisoOtorgadoDTO.class, responseContainer = "PermisoOtorgadoDto", tags = "PermisosOtorgados")
     public ResponseEntity<?> findByUsuarioId(@PathVariable(value = "usuario_id")Long usuarioId) {
         try {
@@ -91,7 +92,7 @@ public class PermisoOtorgadoController {
         }
     }
     
-     @GetMapping("/{permiso}")
+    @GetMapping("/{permiso}")
     @ApiOperation(value = "Obtiene la lista de permisos otorgados segund el permiso ingresado", response = PermisoOtorgadoDTO.class, responseContainer = "PermisoOtorgadoDto", tags = "PermisosOtorgados")
     public ResponseEntity<?> findByPermisoId(@PathVariable(value = "permiso_id")Long permisoId) {
         try {
@@ -107,7 +108,8 @@ public class PermisoOtorgadoController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-      @GetMapping("/usuario/{estado}")
+    
+    @GetMapping("/usuario/{estado}")
     @ApiOperation(value = "Obtiene la lista de permisos otorgados del usuario ingresado según su estado", response = PermisoOtorgadoDTO.class, responseContainer = "PermisoOtorgadoDto", tags = "PermisosOtorgados")
     public ResponseEntity<?> findByUsuarioIdAndEstado(@PathVariable(value = "usuario_id")Long usuarioId,@PathVariable(value = "estado")boolean estado) {
         try {
@@ -124,7 +126,7 @@ public class PermisoOtorgadoController {
         }
     }
     
-       @GetMapping("/permiso/{estado}")
+    @GetMapping("/permiso/{estado}")
     @ApiOperation(value = "Obtiene la lista de permisos otorgados del usuario ingresado según su estado", response = PermisoOtorgadoDTO.class, responseContainer = "PermisoOtorgadoDto", tags = "PermisosOtorgados")
     public ResponseEntity<?> findByPermisoIdAndEstado(@PathVariable(value = "permiso_id")Long permisoId,@PathVariable(value = "estado")boolean estado) {
         try {
@@ -157,7 +159,7 @@ public class PermisoOtorgadoController {
     
     
                  
-     @ApiOperation(value = "Actualiza un permiso otorgado con la información suministrada si su id coincide con el ingresado", response = PermisoOtorgadoDTO.class,  tags = "PermisosOtorgados") 
+    @ApiOperation(value = "Actualiza un permiso otorgado con la información suministrada si su id coincide con el ingresado", response = PermisoOtorgadoDTO.class,  tags = "PermisosOtorgados") 
     @PutMapping("/{id}") 
     @ResponseBody
     public ResponseEntity<?> update(@PathVariable(value = "id") Long id, @RequestBody PermisoOtorgado permisoOtorgadoModified) {
@@ -176,7 +178,7 @@ public class PermisoOtorgadoController {
         }
     }
         
-        @ApiOperation(value = "Elimina un permiso otorgado si su id coincide con el ingresado", response = PermisoOtorgadoDTO.class,  tags = "PermisosOtorgados") 
+    @ApiOperation(value = "Elimina un permiso otorgado si su id coincide con el ingresado", response = PermisoOtorgadoDTO.class,  tags = "PermisosOtorgados") 
     @DeleteMapping("/{id}") 
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
         try {
@@ -207,7 +209,6 @@ public class PermisoOtorgadoController {
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    } 
-        
-    }
+    }       
+}
    

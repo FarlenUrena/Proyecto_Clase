@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.repositories;
 
 import java.util.Date;
@@ -20,5 +21,4 @@ public interface IPermisoRepository extends JpaRepository<Permiso, Long>{
     public Optional<List<Permiso>> findByEstado(@Param("estado")boolean estado);
     public Optional<List<Permiso>> findByFechaRegistroBetween(@Param("fecha_registro")Date start,@Param("fecha_registro")Date end);
     public Optional<Permiso> findByCodigo(@Param("codigo")String codigo);
-    // public long countByX(@Param("id")Permiso permiso);
 }

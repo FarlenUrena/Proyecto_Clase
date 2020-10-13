@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.controllers;
 
 import io.swagger.annotations.Api;
@@ -16,11 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.una.tramites.dto.ArchivoRelacionadoDTO;
-import org.una.tramites.dto.TramiteTipoDTO;
 import org.una.tramites.entities.ArchivoRelacionado;
-import org.una.tramites.entities.TramiteTipo;
 import org.una.tramites.services.IArchivoRelacionadoService;
-import org.una.tramites.services.ITramiteTipoService;
 import org.una.tramites.utils.MapperUtils;
 
 /**

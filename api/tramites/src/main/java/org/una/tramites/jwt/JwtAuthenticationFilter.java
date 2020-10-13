@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.jwt;
 
 import java.io.IOException;
@@ -24,8 +25,8 @@ import org.una.tramites.services.UsuarioServiceImplementation;
  *
  * @author farle_000
  */
-public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtProvider tokenProvider;
 
@@ -48,9 +49,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         } catch (UsernameNotFoundException ex) {
         }
-        
         filterChain.doFilter(request, response);
-
     }
 
     private String getJwtFromRequest(HttpServletRequest request) {
@@ -60,7 +59,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return bearerToken.substring(7, bearerToken.length());
         }
         return null;
-
     }
 }
-

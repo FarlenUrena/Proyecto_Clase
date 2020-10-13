@@ -12,7 +12,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.una.tramites.entities.Permiso;
-import org.una.tramites.entities.Transaccion;
 import org.una.tramites.entities.Usuario;
 
 /**

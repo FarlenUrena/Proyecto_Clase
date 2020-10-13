@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.services;
 
 import java.util.Date;
@@ -12,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.una.tramites.entities.ParametroGeneral;
-import org.una.tramites.entities.TramiteTipo;
 import org.una.tramites.repositories.IParametroGeneralRepository;
-import org.una.tramites.repositories.ITramiteTipoRepository;
 
 /**
  *
@@ -32,18 +31,6 @@ public class ParametroGeneralServiceImplementation implements IParametroGeneralS
     return parametroGeneralRepository.findById(Id);
     }
     
-    /*
-    @Override
-    public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    */
-
-//    @Override
-//    public Optional<List<ParametroGeneral>> findByObjetoAndFechaRegistroBetween(String objeto, Date startDate, Date endDate) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-
     @Override
     public Optional<List<ParametroGeneral>> findByFechaRegistroBetween(Date startDate, Date endDate) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

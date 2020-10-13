@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.entities;
 
 import java.io.Serializable;
@@ -34,6 +35,7 @@ import lombok.Setter;
  *
  * @author farle_000
  */
+
 @Entity
 @Table(name = "usuarios")
 @Data
@@ -93,5 +95,4 @@ public class Usuario implements Serializable {
     public void preUpdate() {
         fechaModificacion = new Date();
     }
-
 }

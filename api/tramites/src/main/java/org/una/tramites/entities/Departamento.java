@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.entities;
 
 import java.io.Serializable;
@@ -28,11 +29,11 @@ import lombok.ToString;
 import lombok.Data;
 import lombok.Setter;
 
-
 /**
  *
  * @author farle_000
  */
+
 @Entity
 @Table(name = "departamentos")
 @Data

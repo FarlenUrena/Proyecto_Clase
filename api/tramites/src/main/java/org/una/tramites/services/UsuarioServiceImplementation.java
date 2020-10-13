@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.services;
 
 import java.util.ArrayList;
@@ -97,34 +98,6 @@ public class UsuarioServiceImplementation implements UserDetailsService, IUsuari
     public void deleteAll() {
         usuarioRepository.deleteAll();
     }
-
-//    @Autowired
-//    private JwtProvider jwtProvider;
-//    @Autowired
-//    private AuthenticationManager authenticationManager;
-//    @Override
-//    public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
-//               Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getCedula(), authenticationRequest.getPassword()));
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//        AuthenticationResponse authenticationResponse = new AuthenticationResponse();
-//
-//        Optional<Usuario> usuario = findByCedula(authenticationRequest.getCedula());
-//
-//        if (usuario.isPresent()) {
-//            authenticationResponse.setJwt(jwtProvider.generateToken(authenticationRequest));
-//            UsuarioDTO usuarioDto = MapperUtils.DtoFromEntity(usuario.get(), UsuarioDTO.class);
-//            authenticationResponse.setUsuario(usuarioDto);
-//            List<PermisoOtorgadoDTO> permisosOtorgadosDto = MapperUtils.DtoListFromEntityList(usuario.get().getPermisosOtorgados(), PermisoOtorgadoDTO.class);
-//            authenticationResponse.setPermisos(permisosOtorgadosDto);
-//
-//            return authenticationResponse;
-//        } else {
-//            return null;
-//        }
-//
-// 
-//    }
-
 
     @Override
         @Transactional(readOnly = true)

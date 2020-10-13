@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.utils;
 
 import java.util.Collection;
@@ -15,8 +16,8 @@ import org.modelmapper.convention.MatchingStrategies;
  *
  * @author thony
  */
-public class MapperUtils {
 
+public class MapperUtils {
     private static ModelMapper modelMapper = new ModelMapper();
 
     static {
@@ -36,5 +37,4 @@ public class MapperUtils {
                 .map(entity -> DtoFromEntity(entity, dtoClass))
                 .collect(Collectors.toList());
     }
-
 } 

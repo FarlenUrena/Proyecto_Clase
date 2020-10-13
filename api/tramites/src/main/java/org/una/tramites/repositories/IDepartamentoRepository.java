@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.repositories;
 
 import java.util.List;
@@ -16,7 +17,5 @@ import org.una.tramites.entities.Departamento;
  * @author farle_000
  */
 public interface IDepartamentoRepository extends JpaRepository<Departamento, Long>{
-    
-    //@Query("SELECT d FROM Departamento d WHERE d.estado like :estado")
     public List<Departamento> findByEstado(@Param("estado")boolean estado);
 }

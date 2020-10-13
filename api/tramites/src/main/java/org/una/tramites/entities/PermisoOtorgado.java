@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.entities;
 
 import java.io.Serializable;
@@ -33,6 +34,7 @@ import lombok.ToString;
  *
  * @author farle_000
  */
+
 @Entity
 @Table(name = "permisos_otorgados")
 @Data
@@ -40,7 +42,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class PermisoOtorgado implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,22 +50,13 @@ public class PermisoOtorgado implements Serializable {
     @ManyToOne 
     @JoinColumn(name="usuarios_id")
     private Usuario usuario;
-    
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "permisoOtorgado") 
     private List<Transaccion> transacciones= new ArrayList<>();
-
     
     @ManyToOne 
     @JoinColumn(name="permisos_id")
     private Permiso permiso;
-    
-    
-//    @Column(name = "usuario_id")
-//    private Long usuarioId;
-//
-//    @Column( name = "permiso_id")
-//    private Long permisoId;
 
     @Column
     private boolean estado;

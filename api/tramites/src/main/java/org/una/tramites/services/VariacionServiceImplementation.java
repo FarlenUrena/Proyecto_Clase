@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.services;
 
-import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,18 +24,9 @@ public class VariacionServiceImplementation implements IVariacionService {
     @Autowired
     private IVariacionRepository variacionRepository;
     
-    
     @Override
     @Transactional(readOnly = true)
     public Optional<Variacion> findById(Long Id) {
         return variacionRepository.findById(Id);
     }
-    
-    /*
-    @Override
-    @Transactional
-    public Variacion create(Variacion variacion) {
-    return variacionRepository.save(variacion);
-    }
-    */
 }

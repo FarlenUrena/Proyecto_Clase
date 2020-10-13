@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.services;
 
-import java.util.Date;
-import java.util.List;
 import java.util.Optional;
-import org.una.tramites.controllers.RequisitoController;
 import org.una.tramites.entities.Requisito;
 
 /**
@@ -17,9 +15,5 @@ import org.una.tramites.entities.Requisito;
  */
 
 public interface IRequisitoService {
-    // public Optional<Requisito> findById(Long id);
-    // public Requisito create(Requisito requisito);
     public Optional<Requisito> findByRequisitoId(Long requisitoId);
-    // public void delete(Long id);
-    // public void deleteAll();
 }

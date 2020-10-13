@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.entities;
 
 import java.io.Serializable;
@@ -32,22 +33,22 @@ import lombok.ToString;
  *
  * @author farle_000
  */
+
 @Entity
 @Table(name = "permisos")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Permiso implements Serializable {
 
+public class Permiso implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-     @OneToMany(cascade = CascadeType.ALL, mappedBy = "permiso") 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "permiso") 
     private List<PermisoOtorgado> permisosOtorgados= new ArrayList<>();
-    
     
     @Column(name = "codigo", length = 10)
     private String codigo;
@@ -68,11 +69,9 @@ public class Permiso implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
 
-
     @PrePersist
     public void prePersist() {
         estado=true;
-        
         fechaRegistro = new Date();
         fechaModificacion = new Date();
     }

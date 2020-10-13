@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.controllers;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,17 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.una.tramites.dto.AuthenticationRequest;
-import org.una.tramites.dto.AuthenticationResponse;
 import org.una.tramites.dto.UsuarioDTO;
-import org.una.tramites.entities.Usuario;
 import org.una.tramites.services.IAutenticacionService;
-import org.una.tramites.services.IUsuarioService;
-import org.una.tramites.utils.MapperUtils;
 
 /**
  *
  * @author farle_000
  */
+
 @RestController
 @RequestMapping("/autenticacion") 
 @Api(tags = {"Seguridad"})
@@ -43,23 +40,18 @@ public class AutenticacionController {
     @ResponseBody
     @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuarioDTO.class, tags = "Seguridad")
     public ResponseEntity<?> login(@Valid @RequestBody AuthenticationRequest authenticationRequest, BindingResult bindingResult/*,@PathVariable(value = "cedula") String cedula, @PathVariable(value = "password") String password */) {
-        
-
         final String MENSAJE_VERIFICAR_CREDENCIALES = "Debe verificar y proporcionar credenciales correctas";
         final String MENSAJE_VERIFICAR_INFORMACION = "Debe verificar el formato y la información de su";
-        
         if (!bindingResult.hasErrors()) {
             try{
             return new ResponseEntity(autenticacionService.login(authenticationRequest), HttpStatus.BAD_REQUEST);
             }catch (UsernameNotFoundException | BadCredentialsException e){
             return new ResponseEntity(MENSAJE_VERIFICAR_CREDENCIALES,HttpStatus.UNAUTHORIZED);
-            
             } catch (Exception e){
             return new ResponseEntity(e,HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }else{
         return new ResponseEntity(MENSAJE_VERIFICAR_INFORMACION, HttpStatus.BAD_REQUEST);
         }
-    }
-    
+    } 
 }

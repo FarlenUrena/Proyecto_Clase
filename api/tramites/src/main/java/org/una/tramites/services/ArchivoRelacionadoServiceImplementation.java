@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.services;
 
 import java.util.Optional;
@@ -24,6 +25,7 @@ public class ArchivoRelacionadoServiceImplementation implements IArchivoRelacion
     
     @Override
     @Transactional(readOnly = true)
+    
     public Optional<ArchivoRelacionado> findById(Long Id) {
     return archivoRelacionadoRepository.findById(Id);
     }

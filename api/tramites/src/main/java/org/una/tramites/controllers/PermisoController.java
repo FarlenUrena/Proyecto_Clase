@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.controllers;
 
 import io.swagger.annotations.Api;
@@ -32,13 +33,14 @@ import org.una.tramites.utils.MapperUtils;
  *
  * @author farle_000
  */
+
 @RestController
 @RequestMapping("/permisos") 
 @Api(tags = {"Permisos"})
+
 public class PermisoController {
     @Autowired
     private IPermisoService permisoService;
-  
     
     @GetMapping("/{id}")
     @ApiOperation(value = "Obtiene un permiso apartir del id ingresado", response = PermisoDTO.class, responseContainer = "PermisoDto", tags = "Permisos")
@@ -144,7 +146,6 @@ public class PermisoController {
     @ApiOperation(value = "Elimina todos los usuarios", response = PermisoDTO.class, tags = "Permisos") 
     @DeleteMapping("/") 
     public ResponseEntity<?> deleteAll() {
- 	//TODO: Implementar este método
         try {
             Optional<List<Permiso>> result = permisoService.findAll();
             if (result.isPresent()) {
@@ -158,4 +159,3 @@ public class PermisoController {
         }
     } 
 }
-   

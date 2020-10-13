@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.entities;
 
 import java.io.Serializable;
@@ -26,7 +27,6 @@ import lombok.ToString;
 import lombok.Data;
 import lombok.Setter;
 
-
 /**
  *
  * @author thony
@@ -40,7 +40,6 @@ import lombok.Setter;
 @ToString
         
 public class Requisito implements Serializable {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

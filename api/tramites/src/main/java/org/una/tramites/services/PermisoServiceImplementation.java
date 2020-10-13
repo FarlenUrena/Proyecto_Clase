@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.services;
 
 import java.util.Date;
@@ -18,6 +19,7 @@ import org.una.tramites.repositories.IPermisoRepository;
  *
  * @author farle_000
  */
+
 @Service
 public class PermisoServiceImplementation implements IPermisoService {
     

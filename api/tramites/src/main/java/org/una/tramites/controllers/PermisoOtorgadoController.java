@@ -75,7 +75,7 @@ public class PermisoOtorgadoController {
         }
     }
     
-     @GetMapping("/{usuario}")
+    @GetMapping("/{usuario}")
     @ApiOperation(value = "Obtiene la lista de permisos otorgados del usuario ingresado", response = PermisoOtorgadoDTO.class, responseContainer = "PermisoOtorgadoDto", tags = "PermisosOtorgados")
     public ResponseEntity<?> findByUsuarioId(@PathVariable(value = "usuario_id")Long usuarioId) {
         try {
@@ -211,4 +211,3 @@ public class PermisoOtorgadoController {
         }
     }       
 }
-   

@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites;
 
 import javax.servlet.Filter;
@@ -29,16 +30,18 @@ import org.una.tramites.services.UsuarioServiceImplementation;
 
 @Configuration
 @EnableWebSecurity
+
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UsuarioServiceImplementation userService;
 
-   @Autowired
+    @Autowired
     private BCryptPasswordEncoder bCrypt;
    
-   @Autowired
+    @Autowired
     private JwtAuthenticationEntryPoint entryPoint;
+    
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -60,15 +63,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated().and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
-
-    
-    
-
-@Bean
+    @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
         return new JwtAuthenticationFilter();
     }
@@ -83,7 +81,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
-
-    
-    
 }

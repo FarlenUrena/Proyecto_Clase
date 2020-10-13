@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.entities;
 
 import java.io.Serializable;
@@ -29,7 +30,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.Data;
 import lombok.Setter;
-
 
 /**
  *
@@ -70,16 +70,6 @@ public class TramiteTipo implements Serializable {
     @Setter(AccessLevel.NONE)
     @Temporal(TemporalType.DATE)
     private Date fechaModificacion;
-    
-    /*
-    @ManyToOne 
-    @JoinColumn(name="departamentos_id")
-    private Departamento departamento;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tramite_tipo") 
-    private List<Variacion> variaciones= new ArrayList<>();
-    private static final long serialVersionUID = 1L;
-    */
     
     @PrePersist
     public void prePersist() {

@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.loaders;
 
 /**
@@ -30,7 +31,6 @@ public enum Permisos {
     TRAMITE_CONSULTAR_TODO("TRA6"),
     TRAMITE_DISEÑAR("TRD1"),
     TRANSACCION_CONSULTAR("TRU1");
-
     
     private String codigo;
 

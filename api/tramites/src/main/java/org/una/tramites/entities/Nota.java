@@ -6,16 +6,12 @@
 package org.una.tramites.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -45,11 +41,7 @@ public class Nota implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "permiso") 
-//    private List<PermisoOtorgado> permisosOtorgados= new ArrayList<>();
-    
+    private Long id;  
     
     @Column(name = "codigo", length = 10)
     private String codigo;
@@ -65,22 +57,13 @@ public class Nota implements Serializable {
     @Setter(AccessLevel.NONE)
     private Date fechaRegistro;
 
-//    @Column(name = "fecha_modificacion")
-//    @Setter(AccessLevel.NONE)
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date fechaModificacion;
-
-
     @PrePersist
     public void prePersist() {
         estado=true;
-        
         fechaRegistro = new Date();
-//        fechaModificacion = new Date();
     }
 
     @PreUpdate
     public void preUpdate() {
-//        fechaModificacion = new Date();
     }
 }

@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.una.tramites.jwt;
 
+package org.una.tramites.jwt;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -21,9 +21,9 @@ import org.una.tramites.dto.AuthenticationRequest;
  *
  * @author farle_000
  */
+
 @Component
 public class JwtProvider {
-
     @Value("${jwt.secret}")
     private String secret;
 
@@ -49,9 +49,6 @@ public class JwtProvider {
         
         } catch (ExpiredJwtException | MalformedJwtException | SignatureException | UnsupportedJwtException | IllegalArgumentException ex) {
             return false;
-        }
-        
+        } 
     }
-
 }
-

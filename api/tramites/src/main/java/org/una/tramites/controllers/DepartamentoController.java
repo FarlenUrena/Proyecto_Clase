@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.controllers;
 
 import io.swagger.annotations.Api;
@@ -31,7 +32,7 @@ import org.una.tramites.utils.MapperUtils;
 @RequestMapping("/departamentos") 
 @Api(tags = {"Departamentos"})
 public class DepartamentoController {
-     @Autowired
+    @Autowired
     private IDepartamentoService departamentoService;
     
     @GetMapping("/{estado}")

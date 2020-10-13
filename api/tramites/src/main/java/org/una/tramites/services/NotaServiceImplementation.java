@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.services;
 
 import java.util.Date;
@@ -29,13 +30,9 @@ public class NotaServiceImplementation implements INotaService {
     public Optional<Nota> findById(Long Id) {
     return notaRepository.findById(Id);
     }
-    
-//    @Override
-//    public Optional<List<Nota>> findByObjetoAndFechaRegistroBetween(String objeto, Date startDate, Date endDate) {
-//    return null;}
 
     @Override
     public Optional<List<Nota>> findByFechaRegistroBetween(Date startDate, Date endDate) {
     return null;
-            }
+    }
 }

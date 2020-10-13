@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.services;
 
 import org.una.tramites.dto.AuthenticationRequest;
@@ -12,6 +13,7 @@ import org.una.tramites.dto.AuthenticationResponse;
  *
  * @author farle_000
  */
+
 public interface IAutenticacionService {
     public AuthenticationResponse login(AuthenticationRequest authenticationRequest);
 }

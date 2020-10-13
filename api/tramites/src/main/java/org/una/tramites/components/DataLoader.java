@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.components;
 
 import java.util.Optional;
@@ -23,6 +24,7 @@ import org.una.tramites.services.IUsuarioService;
  *
  * @author farle_000
  */
+
 @Component
 public class DataLoader implements ApplicationRunner {
 
@@ -43,37 +45,31 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-
         if(permisoService.ContarPermisos() == 0 || permisoService.ContarPermisos() == 1){
         createPermisos();
         }
         if (usuarioService.findByCedula(cedula).isEmpty()) {
-
             Permiso permiso;
             final String codigo = "Usu01"; 
             Optional<Permiso> permisoBuscado = permisoService.findByCodigo(codigo);
-
             if (permisoBuscado.isEmpty()) { 
                 permiso = new Permiso();
                 permiso.setCodigo(codigo);
                 permiso.setDescripcion("Registrar usuario nuevo");
                 permiso = permisoService.create(permiso);
-
             } else {
                 permiso = permisoBuscado.get();
             }
-            
             Usuario usuario = new Usuario();
             usuario.setNombreCompleto("Usuario Admin");
             usuario.setCedula(cedula);
             usuario.setPasswordEncriptado(password);
             usuario = usuarioService.create(usuario);
-
+            
             PermisoOtorgado permisoOtorgado = new PermisoOtorgado();
             permisoOtorgado.setPermiso(permiso);
             permisoOtorgado.setUsuario(usuario);
             permisoOtorgadoService.create(permisoOtorgado);
-
             System.out.println("Se agrega el usuario inicial");
         } else {
             System.out.println("Se encontró el admin");
@@ -87,6 +83,4 @@ public class DataLoader implements ApplicationRunner {
             permisoService.create(nuevoPermiso);
         } 
     }
-
-    
 }

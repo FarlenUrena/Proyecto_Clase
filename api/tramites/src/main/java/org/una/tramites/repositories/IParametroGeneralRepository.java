@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.repositories;
 
 import java.util.Date;
@@ -19,8 +20,6 @@ import org.una.tramites.entities.PermisoOtorgado;
  */
 
 public interface IParametroGeneralRepository extends JpaRepository<ParametroGeneral, Long>{
-//    public Optional<List<ParametroGeneral>> findByObjetoAndFechaRegistroBetween(@Param("objeto")String objeto,@Param("fecha_registro") Date startDate,@Param("fecha_registro") Date endDate);
     public Optional<List<ParametroGeneral>> findByFechaRegistroBetween(@Param("fecha_registro")Date startDate,@Param("fecha_registro")Date endDate);        
-
     public ParametroGeneral save(PermisoOtorgado parametroGeneral);
 }

@@ -18,5 +18,4 @@ import org.una.tramites.entities.Variacion;
 
 public interface IVariacionRepository extends JpaRepository<Variacion, Long> {
     public Optional<Variacion> findById(@Param("id")Long Id);
-    // public Optional<List<Variacion>> findByFechaRegistroBetween(@Param("fecha_registro")Date startDate,@Param("fecha_registro")Date endDate);        
 }

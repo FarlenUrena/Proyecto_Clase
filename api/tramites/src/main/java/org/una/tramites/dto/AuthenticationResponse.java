@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.dto;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import lombok.ToString;
  *
  * @author farle_000
  */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

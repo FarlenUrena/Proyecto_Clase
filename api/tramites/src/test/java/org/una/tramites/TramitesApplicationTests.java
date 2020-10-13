@@ -9,5 +9,4 @@ class TramitesApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.services;
 
 import java.util.Date;
@@ -17,7 +18,6 @@ import org.una.tramites.entities.ParametroGeneral;
 
 public interface IParametroGeneralService {
     public Optional<ParametroGeneral> findById(Long id);
-//    public Optional<List<ParametroGeneral>> findByObjetoAndFechaRegistroBetween(String objeto, Date startDate, Date endDate);
     public Optional<List<ParametroGeneral>> findByFechaRegistroBetween(Date startDate, Date endDate);
     public ParametroGeneral create(ParametroGeneral parametroGeneral);
 }

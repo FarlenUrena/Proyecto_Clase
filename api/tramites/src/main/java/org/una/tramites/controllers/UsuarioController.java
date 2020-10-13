@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.controllers;
 
 import io.swagger.annotations.Api;
@@ -10,11 +11,9 @@ import io.swagger.annotations.ApiOperation;
 import org.una.tramites.services.IUsuarioService;
 import java.util.List;
 import java.util.Optional;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,11 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.una.tramites.dto.AuthenticationRequest;
-import org.una.tramites.dto.AuthenticationResponse;
-import org.una.tramites.dto.PermisoOtorgadoDTO;
 import org.una.tramites.dto.UsuarioDTO;
-import org.una.tramites.entities.PermisoOtorgado;
 import org.una.tramites.entities.Usuario;
 import org.una.tramites.utils.MapperUtils;
 
@@ -41,6 +36,7 @@ import org.una.tramites.utils.MapperUtils;
 @RestController
 @RequestMapping("/usuarios") 
 @Api(tags = {"Usuarios"})
+
 public class UsuarioController {
     @Autowired
     private IUsuarioService usuarioService;
@@ -79,56 +75,6 @@ public class UsuarioController {
         }
     }
 
-//    @PostMapping("/login")
-//    @ResponseBody
-//    @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuarioDTO.class, tags = "Seguridad")
-//    public ResponseEntity<?> login(@Valid @RequestBody AuthenticationRequest authenticationRequest, BindingResult bindingResult/*,@PathVariable(value = "cedula") String cedula, @PathVariable(value = "password") String password */) {
-//
-//        if (bindingResult.hasErrors()) {
-//            return new ResponseEntity("La información no esta bien formada o no coincide con el formato esperado", HttpStatus.BAD_REQUEST);
-//        }
-//        try {
-//            
-//            if (!authenticationResponse.toString().isBlank()) {
-//               
-//                   
-//                  
-//                   
-//                   authenticationResponse.setPermisos(permisosOtorgados);
-//                   
-//                return new ResponseEntity(authenticationResponse, HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<>("Credenciales invalidos", HttpStatus.UNAUTHORIZED);
-//            }
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-
-    
-//    @PutMapping("/login")
-//    @ResponseBody
-//    @ApiOperation(value = "Inicio de sesión para conseguir un token de acceso", response = UsuarioDTO.class, tags = "Seguridad")
-//    public ResponseEntity<?> login(@PathVariable(value = "cedula") String cedula, @PathVariable(value = "password") String password) {
-//        try {
-//            Usuario usuario = new Usuario();
-//            usuario.setCedula(cedula);
-//            usuario.setPasswordEncriptado(password);
-//            Optional<Usuario> usuarioFound = usuarioService.login(usuario);
-//            if (usuarioFound.isPresent()) {
-//                UsuarioDTO usuarioDto = MapperUtils.DtoFromEntity(usuarioFound.get(), UsuarioDTO.class);
-//                return new ResponseEntity<>(usuarioDto, HttpStatus.OK);
-//
-//            } else {
-//                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-//            }
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//
-//    }
-
-    
     @ApiOperation(value = "Obtiene una lista de usuarios que contengan en su cédula el valor ingresado", response = UsuarioDTO.class, responseContainer = "List", tags = "Usuarios")
     @GetMapping("/cedula/{term}")
     public ResponseEntity<?> findByCedulaAproximate(@PathVariable(value = "term") String term) {
@@ -187,12 +133,12 @@ public class UsuarioController {
 
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
             }
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
     @ApiOperation(value = "Elimina un usuario si su id coincide con el ingresado", response = UsuarioDTO.class,  tags = "Usuarios") 
     @DeleteMapping("/{id}") 
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
@@ -207,15 +153,12 @@ public class UsuarioController {
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        
-        
-    //TODO: Implementar este método
     }
     
     @ApiOperation(value = "Elimina todos los usuarios", response = UsuarioDTO.class, tags = "Usuarios") 
     @DeleteMapping("/") 
     public ResponseEntity<?> deleteAll() {
- 	//TODO: Implementar este método
+
         try {
             Optional<List<Usuario>> result = usuarioService.findAll();
             if (result.isPresent()) {
@@ -229,7 +172,7 @@ public class UsuarioController {
         }
     } 
     
-     @ApiOperation(value = "Obtiene una lista de los usuarios asociados con el departamento ingresado", response = UsuarioDTO.class, responseContainer = "List", tags = "Usuarios")
+    @ApiOperation(value = "Obtiene una lista de los usuarios asociados con el departamento ingresado", response = UsuarioDTO.class, responseContainer = "List", tags = "Usuarios")
     @GetMapping("{departamento_id}")
     public ResponseEntity<?> findByDepartamentoId(@PathVariable(value = "departamento_id") Long id) {
         try {
@@ -244,7 +187,7 @@ public class UsuarioController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//    
+ 
     @ApiOperation(value = "Obtiene el usuario jefe de un departamento", response = UsuarioDTO.class, responseContainer = "UsuarioDto", tags = "Usuarios")
     @GetMapping("departamento/jefe/{id}")
     public ResponseEntity<?> findJefeByDepartamento(@PathVariable(value = "departamento_id") Long departamentoId) {
@@ -261,5 +204,4 @@ public class UsuarioController {
             return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//    return 0;
 }

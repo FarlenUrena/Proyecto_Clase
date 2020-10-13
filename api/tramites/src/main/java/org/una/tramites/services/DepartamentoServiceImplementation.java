@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.services;
 
 import java.util.List;
@@ -17,9 +18,9 @@ import org.una.tramites.repositories.IDepartamentoRepository;
  *
  * @author farle_000
  */
+
 @Service
 public class DepartamentoServiceImplementation implements IDepartamentoService{
-    
     @Autowired
     private IDepartamentoRepository departamentoRepository;
 
@@ -28,6 +29,4 @@ public class DepartamentoServiceImplementation implements IDepartamentoService{
     public Optional<List<Departamento>> findByEstado(boolean estado) {
      return Optional.ofNullable(departamentoRepository.findByEstado(estado));
     }
-    
-    
 }

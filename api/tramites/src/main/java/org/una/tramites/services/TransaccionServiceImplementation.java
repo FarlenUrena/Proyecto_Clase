@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.services;
 
 import java.util.Date;
@@ -18,12 +19,11 @@ import org.una.tramites.repositories.ITransaccionRepository;
  *
  * @author farle_000
  */
+
 @Service
 public class TransaccionServiceImplementation implements ITransaccionService {
-
     @Autowired
     private ITransaccionRepository transaccionRepository;
-    
     
     @Override
     @Transactional(readOnly = true)
@@ -41,7 +41,7 @@ public class TransaccionServiceImplementation implements ITransaccionService {
     @Transactional(readOnly = true)
     public Optional<List<Transaccion>> findByFechaRegistroBetween(Date startDate, Date endDate) {
     return transaccionRepository.findByFechaRegistroBetween(startDate,endDate);
-            }
+    }
 
     @Override
     @Transactional

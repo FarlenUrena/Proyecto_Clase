@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.services;
 
 import java.util.List;
@@ -14,8 +15,5 @@ import org.una.tramites.entities.Departamento;
  * @author farle_000
  */
 public interface IDepartamentoService {
-    
-    public Optional<List<Departamento>> findByEstado(boolean estado);
-    
-     
+    public Optional<List<Departamento>> findByEstado(boolean estado);     
 }

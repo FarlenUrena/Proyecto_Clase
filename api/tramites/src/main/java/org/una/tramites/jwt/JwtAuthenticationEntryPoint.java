@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package org.una.tramites.jwt;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
  *
  * @author farle_000
  */
+
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
@@ -26,7 +28,4 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
             AuthenticationException e) throws IOException, ServletException {
         httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
     }
-
-    
 }
-
